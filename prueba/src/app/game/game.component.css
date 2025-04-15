@@ -1,0 +1,25 @@
+.board {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 2px;
+  background-color: #000;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+}
+
+.cell.snake {
+  background-color: #0f0;
+}
+
+.cell.food {
+  background-color: #f00;
+}

@@ -1,0 +1,9 @@
+<div class="board">
+  <div *ngFor="let row of board; let y = index" class="row">
+    <div *ngFor="let cell of row; let x = index" 
+         [class.snake]="snake.some(segment => segment.x === x && segment.y === y)"
+         [class.food]="food.x === x && food.y === y"
+         class="cell">
+    </div>
+  </div>
+</div>
