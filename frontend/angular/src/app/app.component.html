@@ -1,10 +1,11 @@
-<div class="app-container">
+<div class="home">
   <app-navbar></app-navbar>
 
 
   <main class="content">
     <div class="home-container" *ngIf="router.url === '/'">
-      <h2>Bienvenido a FormBuilder</h2>
+
+      <h2>Bienvenido a Formularios UMSS</h2>
       <p>Tu plataforma para crear y gestionar formularios de manera sencilla</p>
       
       <div class="features">
@@ -29,11 +30,12 @@
           <button routerLink="/mis-formularios" class="btn-primary">Mis formularios</button>
         </div>
       </div>
+
     </div>
     <router-outlet></router-outlet>
   </main>
 
   <footer class="main-footer">
-    <p>&copy; 2024 FormBuilder - Tu herramienta de formularios</p>
+    <p>&copy; 2025 Formularios UMSS- Tu herramienta de formularios</p>
   </footer>
 </div>
