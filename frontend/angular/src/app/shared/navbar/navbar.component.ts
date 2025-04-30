@@ -9,6 +9,4 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  // Aquí puedes agregar lógica relacionada con el navbar
-  // Por ejemplo: método para cerrar sesión, verificar usuario actual, etc.
 }
