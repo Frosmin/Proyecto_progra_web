@@ -1,17 +1,6 @@
 <div class="app-container">
-  <header class="main-header">
-    <div class="logo">
-      <h1>FormBuilder</h1>
-    </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
-        <li><a routerLink="/crear" routerLinkActive="active">Crear Formulario</a></li>
-        <li><a routerLink="/mis-formularios" routerLinkActive="active">Mis Formularios</a></li>
-        <li><a routerLink="/respuestas" routerLinkActive="active">Respuestas</a></li>
-      </ul>
-    </nav>
-  </header>
+  <app-navbar></app-navbar>
+
 
   <main class="content">
     <div class="home-container" *ngIf="router.url === '/'">
