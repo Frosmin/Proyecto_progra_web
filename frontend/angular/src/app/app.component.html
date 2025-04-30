@@ -5,7 +5,7 @@
   <main class="content">
     <div class="home-container" *ngIf="router.url === '/'">
 
-      <h2>Bienvenido a Formularios UMSS</h2>
+      <h2>Plataforma para crear formularios</h2>
       <p>Tu plataforma para crear y gestionar formularios de manera sencilla</p>
       
       <div class="features">
@@ -18,17 +18,11 @@
         
         <div class="feature-card">
           <div class="icon">📊</div>
-          <h3>Analizar Respuestas</h3>
-          <p>Visualiza y analiza las respuestas recibidas en tiempo real</p>
+          <h3>Vista de los formularios creados</h3>
+          <p>Visualiza un formulario creado de la misma forma que lo vera un usuario</p>
           <button routerLink="/respuestas" class="btn-primary">Ver estadísticas</button>
         </div>
         
-        <div class="feature-card">
-          <div class="icon">🔗</div>
-          <h3>Compartir</h3>
-          <p>Comparte tus formularios mediante enlaces personalizados</p>
-          <button routerLink="/mis-formularios" class="btn-primary">Mis formularios</button>
-        </div>
       </div>
 
     </div>
