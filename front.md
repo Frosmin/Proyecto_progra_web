@@ -1,0 +1,2 @@
+ng serve
+npm start
