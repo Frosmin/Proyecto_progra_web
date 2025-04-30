@@ -1,26 +1,52 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<div class="app-container">
+  <header class="main-header">
+    <div class="logo">
+      <h1>FormBuilder</h1>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
+        <li><a routerLink="/crear" routerLinkActive="active">Crear Formulario</a></li>
+        <li><a routerLink="/mis-formularios" routerLinkActive="active">Mis Formularios</a></li>
+        <li><a routerLink="/respuestas" routerLinkActive="active">Respuestas</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <main class="content">
+    <div class="home-container" *ngIf="router.url === '/'">
+      <h2>Bienvenido a FormBuilder</h2>
+      <p>Tu plataforma para crear y gestionar formularios de manera sencilla</p>
+      
+      <div class="features">
+        <div class="feature-card">
+          <div class="icon">📝</div>
+          <h3>Crear Formularios</h3>
+          <p>Diseña formularios personalizados con diferentes tipos de preguntas</p>
+          <button routerLink="/crear" class="btn-primary">Comenzar ahora</button>
+        </div>
+        
+        <div class="feature-card">
+          <div class="icon">📊</div>
+          <h3>Analizar Respuestas</h3>
+          <p>Visualiza y analiza las respuestas recibidas en tiempo real</p>
+          <button routerLink="/respuestas" class="btn-primary">Ver estadísticas</button>
+        </div>
+        
+        <div class="feature-card">
+          <div class="icon">🔗</div>
+          <h3>Compartir</h3>
+          <p>Comparte tus formularios mediante enlaces personalizados</p>
+          <button routerLink="/mis-formularios" class="btn-primary">Mis formularios</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Este es el punto donde se mostrarán otros componentes basados en la ruta -->
+    <router-outlet></router-outlet>
+  </main>
 
-<main class="main">
-  <!-- Añadir este enlace dentro de la sección de pill-group -->
-  <a class="pill" routerLink="/hello">
-    <span>Ver mensaje del backend</span>
-  </a>
-</main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<router-outlet />
+  <footer class="main-footer">
+    <p>&copy; 2024 FormBuilder - Tu herramienta de formularios</p>
+  </footer>
+</div>

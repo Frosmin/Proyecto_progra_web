@@ -1,2 +1,2 @@
-ng serve
+ng serve --open
 npm start
