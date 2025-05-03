@@ -2,9 +2,8 @@ package main
 
 import (
 	"net/http"
-
-	"github.com/Frosmin/backend/db"
-	"github.com/Frosmin/backend/routes"
+	"backend/db"
+	"backend/routes"
 	"github.com/gorilla/mux"
 )
 

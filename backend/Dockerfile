@@ -1,6 +1,6 @@
-FROM golang:1.21-alpine AS build
+FROM golang:1.24
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Copiar archivos de dependencias y descargarlas
 COPY go.mod go.sum ./
@@ -10,21 +10,22 @@ RUN go mod download
 COPY . .
 
 # Compilar la aplicación
-RUN CGO_ENABLED=0 GOOS=linux go build -o main .
-
-# Crear una imagen final más pequeña
-FROM alpine:latest
-
-WORKDIR /app
-
-# Instalar certificados para HTTPS
-RUN apk --no-cache add ca-certificates
-
-# Copiar el binario compilado desde la etapa anterior
-COPY --from=build /app/main .
+RUN go build -v -o /usr/local/bin/app
 
 # Puerto que expondrá la aplicación
-EXPOSE 8080
+EXPOSE 8081
 
 # Comando para ejecutar la aplicación
-CMD ["/app/main"]
+CMD ["/usr/local/bin/app"]
+
+
+# Crear una imagen final más pequeña
+# FROM alpine:latest
+
+# WORKDIR /app
+
+# Instalar certificados para HTTPS
+# RUN apk --no-cache add ca-certificates
+
+# Copiar el binario compilado desde la etapa anterior
+# COPY --from=build /app/main .
