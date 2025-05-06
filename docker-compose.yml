@@ -7,7 +7,7 @@ services:
     environment:
       - ENV=production
       - DB_HOST=postgres
-      - DB_PORT=5432
+      - DB_PORT=5432A
       - DB_USER=postgres
       - DB_PASSWORD=secret
       - DB_NAME=postgres
