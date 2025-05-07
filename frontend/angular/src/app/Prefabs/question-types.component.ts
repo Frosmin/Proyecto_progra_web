@@ -14,7 +14,7 @@ import { PrefabComponent,QuestionComponent } from './prefab.component';
 })
 export class TextQuestionComponent extends QuestionComponent {
     validator(): boolean {
-        // Implement validation logic for TextQuestionComponent
+        
         return true;
     }
 }
@@ -34,10 +34,11 @@ export class TextQuestionComponent extends QuestionComponent {
 })
 export class MultipleChoiceQuestionComponent extends QuestionComponent {
     options: string[] = [];
+    rightAnswer: string = '';
+    answer: number = 0; 
 
     validator(): boolean {
-        // Implement validation logic for MultipleChoiceQuestionComponent
-        return this.options.length > 0;
+        return this.options[this.answer] === this.rightAnswer;
     }
 }
 
