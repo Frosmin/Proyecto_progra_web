@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    command: sh -c "go mod tidy && CGO_ENABLED=0 GOOS=linux go build -o main . && /app/main"
     environment:
       - ENV=production
     networks:

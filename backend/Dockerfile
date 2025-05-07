@@ -1,16 +1,16 @@
-FROM golang:1.21-alpine AS build
+FROM golang:1.24-alpine AS build
 
 WORKDIR /app
 
 # Copiar archivos de dependencias y descargarlas
 COPY go.mod go.sum ./
-RUN go mod download
+RUN go mod tidy && go mod download
 
 # Copiar el código fuente
 COPY . .
 
 # Compilar la aplicación
-RUN CGO_ENABLED=0 GOOS=linux go build -o main .
+RUN go mod tidy && CGO_ENABLED=0 GOOS=linux go build -o main .
 
 # Crear una imagen final más pequeña
 FROM alpine:latest
