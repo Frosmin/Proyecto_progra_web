@@ -1,6 +1,6 @@
-# Generación de Software
+# Programación Web
 
-Repositorio para el proyecto de generación de software.
+Repositorio para el proyecto de programación web.
 
 ## Instrucciones de Despliegue
 

@@ -1,6 +1,12 @@
-module github.com/Frosmin/backend
+module backend
 
+<<<<<<< HEAD
 go 1.21
+=======
+go 1.24
+
+toolchain go1.24.2
+>>>>>>> 97093be799ecb0570257270bfdb1675fe8466cf2
 
 require (
     github.com/gorilla/mux v1.8.1 // indirect

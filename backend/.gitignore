@@ -1,0 +1,35 @@
+# Archivos binarios compilados
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Directorios de dependencias
+vendor/
+
+# Archivos de configuración del editor
+.vscode/
+.idea/
+*.swp
+
+# Archivos generados por pruebas
+*.coverprofile
+*.log
+
+# Archivos generados por herramientas
+*.gen.go
+
+# Archivos temporales
+tmp/
+
+# Archivos de configuración sensibles
+.env
+.env*
+db/.env
