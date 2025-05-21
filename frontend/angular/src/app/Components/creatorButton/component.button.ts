@@ -5,6 +5,7 @@ import { MultipleChoiceQuestionComponent,TextQuestionComponent } from "../../Pre
 
 @Component({
     selector: 'app-creator-button',
+    standalone: true,
     template: `
         <button class="creational-btn" (click)="createPrefab()">{{name}}</button>
     `,
