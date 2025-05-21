@@ -1,3 +1,4 @@
+import { CheckBoxQuestionComponent, MultipleChoiceQuestionComponent, TextQuestionComponent } from "../Prefabs/question-types.component";
 
 export enum PrefabTypes {
     Basic = 'Basic',
@@ -14,6 +15,7 @@ export const prefabOptions = [
     {
         title: 'Útiles',
         type: PrefabTypes.Basic,
+        prefabs: []
     },
     {
         title: 'Preguntas',
@@ -21,15 +23,15 @@ export const prefabOptions = [
         prefabs: [
             {
                 name: 'Texto',
-                type: QuestionTypes.Text,
+                type: TextQuestionComponent,
             },
             {
                 name: 'Opción Múltiple',
-                type: QuestionTypes.MultipleChoice,
+                type: MultipleChoiceQuestionComponent,
             },
             {
                 name: 'CheckBox',
-                type: QuestionTypes.CheckBox,
+                type: CheckBoxQuestionComponent,
             },
         ],
     },

@@ -1,44 +1,62 @@
-import { Component } from '@angular/core';
-import { PrefabComponent,QuestionComponent } from './prefab.component';
+import { Component, Input } from '@angular/core';
+import { QuestionComponent, SharedTemplateComponent } from './prefab.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-// Text Question
+
+// Text Question Component
 @Component({
     selector: 'app-text-question',
     template: `
-        <div class="text-question">
-            <label>{{ name }}</label>
-            <input type="text" [id]="id" />
-        </div>
+        <app-shared-template>
+             <div class="text-question">
+                  <label>{{ name }}</label>
+                   <input type="text" [name]="id.toString()" [(ngModel)]="answer" />
+                </div>
+             </app-shared-template>
     `,
-    styleUrls: ['./prefab.component.css']
+    imports: [FormsModule, SharedTemplateComponent],
+    styleUrls: ['./question-types.component.css']
 })
 export class TextQuestionComponent extends QuestionComponent {
-    validator(): boolean {
-        
-        return true;
-    }
+    
+    
 }
 
-// Multiple Choice Question
+// Multiple Choice Question Component
 @Component({
     selector: 'app-multiple-choice-question',
     template: `
-        <div class="multiple-choice-question">
-            <label>{{ name }}</label>
-            <div *ngFor="let option of options">
-                <input type="radio" [name]="id" [value]="option" /> {{ option }}
-            </div>
-        </div>
+        <app-shared-template >
+
+             <div class="multiple-choice-question">
+
+                  <label>{{ name }}</label>
+
+                   <div *ngFor="let option of objectValues(options)">
+
+                        <input type="radio" [name]="id" [value]="options[option]" /> {{ options[option] }}
+
+                     </div>
+
+                  </div>
+
+        </app-shared-template>
     `,
-    styleUrls: ['./prefab.component.css']
+    imports: [CommonModule,SharedTemplateComponent],
+    styleUrls: ['./question-types.component.css']
 })
 export class MultipleChoiceQuestionComponent extends QuestionComponent {
-    options: string[] = [];
-    rightAnswer: string = '';
-    answer: number = 0; 
+     
+    options: { [key: string]: string } = {};
 
-    validator(): boolean {
-        return this.options[this.answer] === this.rightAnswer;
+    objectValues(obj: { [key: string]: string }): string[] {
+        return Object.values(obj);
+    }
+
+    addOption(key: string, value: string): void {
+        this.options[key] = value;
     }
 }
 
@@ -48,18 +66,23 @@ export class MultipleChoiceQuestionComponent extends QuestionComponent {
     template: `
         <div class="checkbox-question">
             <label>{{ name }}</label>
-            <div *ngFor="let option of options">
-                <input type="checkbox" [id]="id + '-' + option" [value]="option" /> {{ option }}
+            <div *ngFor="let option of objectValues(options)">
+                <input type="checkbox" [id]="id.toString() + '-' + option" [value]="option" /> {{ option }}
             </div>
         </div>
     `,
+    imports:[CommonModule],
     styleUrls: ['./prefab.component.css']
 })
 export class CheckBoxQuestionComponent extends QuestionComponent {
-    options: string[] = [];
+    options: { [key: string]: string } = {};
 
-    validator(): boolean {
-        // Implement validation logic for CheckBoxQuestionComponent
-        return this.options.length > 0;
+    objectValues(obj: { [key: string]: string }): string[] {
+        return Object.values(obj);
     }
+
+    override validator(): boolean {
+        return true;
+    }
+
 }

@@ -1,39 +1,54 @@
 import { Component, Input } from '@angular/core';
 
+// Clase base abstracta
 @Component({
     selector: 'app-prefab',
     template: '',
     styleUrls: ['./prefab.component.css']
 })
-export class PrefabComponent {
-    @Input() id!: number;
-    @Input() name!: string;
+export abstract class PrefabComponent {
+     id!: number;
+     name!: string;
 }
 
-// Derived QuestionComponent
+// Template compartido para componentes derivados
 @Component({
-    selector: 'app-question',
+    selector: 'app-shared-template',
     template: `
-        <div class="question">
-            <ng-content></ng-content>
+        <div class="shared-container">
+            <h3>{{ name }}</h3>
+            <div class="content">
+                <ng-content></ng-content>
+            </div>
         </div>
     `,
     styleUrls: ['./prefab.component.css']
 })
-export abstract class QuestionComponent extends PrefabComponent {
-    @Input() question!: string; 
+export class SharedTemplateComponent extends PrefabComponent {}
 
-    abstract validator(): boolean;
+// Derived QuestionComponent
+@Component({
+    selector: 'app-question',
+    templateUrl: './shared-template.component.html', 
+    styleUrls: ['./prefab.component.css']
+})
+export class QuestionComponent extends PrefabComponent {
+    answer: string = '';
+    rightAnswer: string = '';
+    points: number = 0;
+
+    validator(): boolean {
+        // Implementación específica
+        return this.answer === this.rightAnswer;
+    }
 }
 
 // Derived BasicComponent
 @Component({
     selector: 'app-basic',
-    template: `
-        <div class="basic">
-            <ng-content></ng-content>
-        </div>
-    `,
+    templateUrl: './shared-template.component.html', 
     styleUrls: ['./prefab.component.css']
 })
-export class BasicComponent extends PrefabComponent {}
+export class BasicComponent extends PrefabComponent {
+    @Input() description!: string;
+}
