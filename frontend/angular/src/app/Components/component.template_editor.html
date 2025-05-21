@@ -1,0 +1,12 @@
+<div>
+  <h2>Prefab List</h2>
+
+  @if(prefabs.length > 0){
+      @for(prefab of prefabs; track prefab){
+          <ng-container *ngComponentOutlet="prefab"></ng-container>
+      }
+  } @else{
+      <p>No prefabs available.</p>
+  }
+
+</div>
