@@ -1,29 +1,29 @@
 services:
-  backend:
-    build:
-      context: ./backend
-    ports:
-      - "8081:8081"
-    environment:
-      - ENV=production
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - DB_PASSWORD=secret
-      - DB_NAME=postgres
-    depends_on:
-      - postgres
-    networks:
-      - app-network
-    restart: unless-stopped
+  # backend:
+  #   build:
+  #     context: ./backend
+  #   ports:
+  #     - "8081:8081"
+  #   environment:
+  #     - ENV=production
+  #     - DB_HOST=postgres
+  #     - DB_PORT=5432
+  #     - DB_USER=postgres
+  #     - DB_PASSWORD=secret
+  #     - DB_NAME=postgres
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - app-network
+  #   restart: unless-stopped
 
   frontend:
     build:
       context: ./frontend/angular
     ports:
       - "80:80"
-    depends_on:
-      - backend
+    # depends_on:
+    #   - backend
     networks:
       - app-network
     restart: unless-stopped
