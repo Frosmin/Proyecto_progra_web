@@ -1,6 +1,8 @@
 package db
 
 import (
+	"backend/models"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -17,6 +19,15 @@ func Connect() {
 	} else {
 		println("Connected to database")
 	}
+
+	DB.AutoMigrate(
+		&models.Formulario{},
+		&models.Pregunta{},
+		&models.Opcion{},
+		&models.Respuesta{},
+		&models.DetalleRespuesta{},
+		&models.OpcionSeleccionada{},
+	)
 }
 
 // @dpg-d0mjb5u3jp1c738db5hg-a.oregon-postgres.render.com/web_as25
