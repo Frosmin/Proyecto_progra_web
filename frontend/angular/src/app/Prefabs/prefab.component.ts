@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-// Clase base abstracta
+// Clase base abstracta , creo que es mejor usar interfaces
 @Component({
     selector: 'app-prefab',
     template: '',
