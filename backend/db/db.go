@@ -1,25 +1,22 @@
 package db
 
 import (
-    "gorm.io/driver/postgres"
-    "gorm.io/gorm"
-    "os"
-    "fmt"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
-func Connect() (*gorm.DB, error) {
-    dsn := fmt.Sprintf(
-        "host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
-        os.Getenv("DB_HOST"),
-        os.Getenv("DB_USER"),
-        os.Getenv("DB_PASSWORD"),
-        os.Getenv("DB_NAME"),
-        os.Getenv("DB_PORT"),
-    )
+var DSN = "host=dpg-d0mjb5u3jp1c738db5hg-a.oregon-postgres.render.com user=simon password=OlCsMOu1LJ7bfwspCRADrtsUwszacxJg dbname=web_as25 port=5432"
 
-    db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-    if err != nil {
-        return nil, err
-    }
-    return db, nil
+var DB *gorm.DB
+
+func Connect() {
+	var err error
+	DB, err = gorm.Open(postgres.Open(DSN), &gorm.Config{})
+	if err != nil {
+		panic("failed to connect database: " + err.Error())
+	} else {
+		println("Connected to database")
+	}
 }
+
+// @dpg-d0mjb5u3jp1c738db5hg-a.oregon-postgres.render.com/web_as25
