@@ -10,3 +10,17 @@
 .button-list .creational-btn {
     width: 100%; /* Make buttons take full width of the container */
 }
+
+.template-editor-title{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-prefabs{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}

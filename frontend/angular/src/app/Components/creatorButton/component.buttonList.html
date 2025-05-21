@@ -1,6 +1,8 @@
-<div class="button-list">
   <h2>Opciones</h2>
-  @for(button of buttons; track button.label) {
-  <app-creator-button [name]="button.label" (addPrefab)="onButtonClick($event)" />
-  }
-</div>
+  <div class="button-list">
+    @for(button of buttons; track button.label) {
+      <div class="button-option">
+        <app-creator-button [name]="button.label" (addPrefab)="onButtonClick($event)" />
+      </div>
+    }
+  </div>

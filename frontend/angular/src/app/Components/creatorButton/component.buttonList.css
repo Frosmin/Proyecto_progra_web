@@ -1,5 +1,7 @@
 .button-list {
+    width: 100%;
     display: flex;
+    align-items: center;
     flex-direction: column; /* Stack buttons vertically */
     gap: 10px; /* Add spacing between buttons */
     padding: 0; /* Remove padding */
@@ -9,4 +11,8 @@
 /* Style for individual buttons */
 .button-list .creational-btn {
     width: 100%; /* Make buttons take full width of the container */
+}
+
+.button-option {
+    width: 80%;
 }

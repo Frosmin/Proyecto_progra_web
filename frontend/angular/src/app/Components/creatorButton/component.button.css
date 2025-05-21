@@ -1,5 +1,7 @@
 .creational-btn {
-    background-color: #000; /* Black background */
+    width: 100%;
+    /* background-color: yellow; */
+    background-color: #09f; /*Black background */
     color: #fff; /* White text */
     border: none; /* Remove default border */
     border-radius: 5px; /* Rounded corners */
