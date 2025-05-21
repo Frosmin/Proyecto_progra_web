@@ -1,6 +1,11 @@
 <app-shared-template>
   <div class="text-question">
     <label>{{ name }}</label>
-    <input type="text" [name]="id.toString()" [(ngModel)]="answer" />
+    <input
+      type="text"
+      [name]="id.toString()"
+      [(ngModel)]="answer"
+      placeholder="Escriba su pregunta aqui"
+    />
   </div>
 </app-shared-template>
