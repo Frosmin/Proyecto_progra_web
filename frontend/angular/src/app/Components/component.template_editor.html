@@ -3,14 +3,19 @@
     <h2>Personaliza tu formulario</h2>
   </div>
 
-  @if(prefabs.length > 0){ @for(prefab of prefabs; track prefab){
-  <ng-container *ngComponentOutlet="prefab"></ng-container>
-  } } @else{
-  <div class="no-prefabs">
-    <p>
-      Agrega contenido a tu formulario con los botones que se encuentran en el
-      lado izquierdo. 🚀
-    </p>
+  <!-- Tablero NxN -->
+@if(tableroCreado) {
+  <div class="tablero-container">
+    <h3>Tablero {{tableroSize}}×{{tableroSize}}</h3>
+    <div class="tablero">
+      @for(fila of tablero; track $index) {
+        <div class="fila">
+          @for(celda of fila; track $index) {
+            <div class="celda">{{celda}}</div>
+          }
+        </div>
+      }
+    </div>
   </div>
-  }
+}
 </div>
