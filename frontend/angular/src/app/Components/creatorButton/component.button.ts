@@ -1,9 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PrefabTypes } from '../../utils/prefabTypes';
-import {
-  BasicComponent,
-  PrefabComponent,
-} from '../../Prefabs/prefab.component';
+import { Component, Input, Output, EventEmitter, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { PrefabComponent } from '../../Prefabs/prefab.component';
 import { TextQuestionComponent } from '../../Prefabs/text-question/text-question.component';
 
 @Component({
@@ -14,10 +10,19 @@ import { TextQuestionComponent } from '../../Prefabs/text-question/text-question
   `,
   styleUrls: ['./component.button.css'],
 })
-export class CreatorButtonComponent {
+export class CreatorButtonComponent implements OnInit {
   @Output() addPrefab = new EventEmitter<PrefabComponent>();
   @Input() name: string = 'Crear Prefab';
-  // @Input() prefabType: PrefabComponent = new MultipleChoiceQuestionComponent;
+  @Input() buttonColor: string | null = null;
+  
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  
+  ngOnInit() {
+    if (this.buttonColor) {
+      const button = this.el.nativeElement.querySelector('.creational-btn');
+      this.renderer.setStyle(button, 'background-color', this.buttonColor);
+    }
+  }
 
   createPrefab() {
     this.addPrefab.emit(new TextQuestionComponent());

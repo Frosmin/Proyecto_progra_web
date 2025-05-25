@@ -35,6 +35,10 @@ export const prefabOptions = [
         name: 'Alfiles',
         type: CheckboxComponent,
       },
+      {
+        name: 'Tores',
+        type: CheckboxComponent,
+      },
     ],
   },
 ];

@@ -29,9 +29,6 @@ export class ButtonListComponent {
             const tableroSize = this.numeroValue;
             const tablero = this.crearTablero(tableroSize);
             this.tableroCreado.emit({size: tableroSize, tablero: tablero});
-            
-            // Opcional: Resetear el valor del input
-            // this.numeroValue = null;
         } else {
             alert('Por favor, introduce un número válido mayor que cero.');
         }

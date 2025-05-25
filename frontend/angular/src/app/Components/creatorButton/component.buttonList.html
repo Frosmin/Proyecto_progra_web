@@ -6,10 +6,19 @@
     [(ngModel)]="numeroValue"
     placeholder="Ingrese un número para el tamaño del tablero"
   />
-  <button (click)="procesarNumero()">Crear Tablero</button>
+  <!-- <button (click)="procesarNumero()" class="button">Crear Tablero</button> -->
 </div>
 
 <div class="button-list">
+  <!-- botton para crear tablero es especial :D-->
+  <div class="button-option">
+    <app-creator-button
+      [name]="'Crear Tablero'"
+      [buttonColor]="'#9C27B0'"
+      (addPrefab)="procesarNumero()"
+    />
+  </div>
+
   @for(button of buttons; track button.label) {
   <div class="button-option">
     <app-creator-button
