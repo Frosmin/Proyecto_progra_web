@@ -15,4 +15,10 @@ export class FormComponent {
   addPrefabToEditor(prefab: PrefabComponent, templateEditor: TemplateEditorComponent) {
     templateEditor.prefabs.push(prefab.constructor as Type<PrefabComponent>); 
   }
+
+  setTableroData(tableroData: {size: number, tablero: number[][]}, templateEditor: TemplateEditorComponent) {
+    templateEditor.tableroSize = tableroData.size;
+    templateEditor.tablero = tableroData.tablero;
+    templateEditor.tableroCreado = true;
+  }
 }

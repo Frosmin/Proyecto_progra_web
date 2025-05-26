@@ -24,15 +24,19 @@ export const prefabOptions = [
     type: PrefabTypes.Question,
     prefabs: [
       {
-        name: 'Texto',
+        name: 'Reinas',
         type: TextQuestionComponent,
       },
       {
-        name: 'Opción Múltiple',
+        name: 'Caballos',
         type: MultipleChoiceComponent,
       },
       {
-        name: 'CheckBox',
+        name: 'Alfiles',
+        type: CheckboxComponent,
+      },
+      {
+        name: 'Tores',
         type: CheckboxComponent,
       },
     ],

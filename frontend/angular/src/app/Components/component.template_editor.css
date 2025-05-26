@@ -24,3 +24,65 @@
     justify-content: center;
     align-items: center;
 }
+
+/* Estilos para el tablero */
+.tablero-container {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.tablero {
+  display: flex;
+  flex-direction: column;
+}
+
+.fila {
+  display: flex;
+}
+
+.celda {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #333;
+  margin: -1px 0 0 -1px;
+  font-weight: bold;
+}
+
+/* Alterna colores para crear efecto de tablero de ajedrez */
+.fila:nth-child(odd) .celda:nth-child(even),
+.fila:nth-child(even) .celda:nth-child(odd) {
+  background-color: #e0e0e0;
+}
+
+/* Estilos para el formulario de entrada */
+.input-form {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.input-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-form button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-form button:hover {
+  background-color: #45a049;
+}
