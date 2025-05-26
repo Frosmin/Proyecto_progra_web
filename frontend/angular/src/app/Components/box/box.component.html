@@ -1,2 +1,9 @@
-<div class="celda" [class.odd]="(x+y) % 2 == 1"></div>
+<div 
+class="celda" [class.odd]="(x+y) % 2 == 1"
+(click)="onClick()">
+@if(content == "queen"){
+    
+    <img src="queen.png" alt="Queen Piece" class="piece-image" width="50" height="50">
+}
+</div>
 

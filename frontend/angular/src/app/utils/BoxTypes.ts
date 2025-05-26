@@ -1,4 +1,4 @@
-enum PieceType {
+export enum PieceType {
     QUEEN= 'queen',
     KING = 'king',
     BISHOP = 'bishop',
@@ -7,13 +7,13 @@ enum PieceType {
     PAWN = 'pawn',
 }
 
-enum BoxStatus{
+export enum BoxStatus{
     EMPTY = 'empty',
     SELECTED = 'selected',
     HIGHLIGHTED = 'highlighted',
 }
 
-type BoxType = {
+export type BoxType = {
     id: number,
     x: number;
     y: number;
@@ -21,4 +21,3 @@ type BoxType = {
     status: BoxStatus;
 };
 
-export type { PieceType, BoxStatus, BoxType };
