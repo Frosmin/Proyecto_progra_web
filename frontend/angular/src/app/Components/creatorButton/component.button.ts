@@ -17,9 +17,9 @@ import { TextQuestionComponent } from '../../Prefabs/text-question/text-question
 export class CreatorButtonComponent {
   @Output() addPrefab = new EventEmitter<PrefabComponent>();
   @Input() name: string = 'Crear Prefab';
-  // @Input() prefabType: PrefabComponent = new MultipleChoiceQuestionComponent;
+  @Input() prefabType: PrefabComponent = new TextQuestionComponent();
 
   createPrefab() {
-    this.addPrefab.emit(new TextQuestionComponent());
+    this.addPrefab.emit(this.prefabType);
   }
 }

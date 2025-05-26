@@ -9,6 +9,10 @@ import { Component, Input } from '@angular/core';
 export abstract class PrefabComponent {
      id!: number;
      name!: string;
+
+    constructor() {
+        this.id = Math.floor(Math.random() * 10000); // Genera un ID aleatorio
+    }
 }
 
 // Template compartido para componentes derivados
