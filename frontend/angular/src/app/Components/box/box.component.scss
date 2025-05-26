@@ -1,0 +1,24 @@
+
+.celda {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333;
+    margin: -1px 0 0 -1px;
+    font-weight: bold;
+}
+
+.celda.odd{
+    background-color: #e0e0e0;
+}
+  
+.celda:hover {
+background-color: #278dcd;
+cursor: pointer; 
+}
+
+.celda:active{
+transform: scale(0.9);
+}

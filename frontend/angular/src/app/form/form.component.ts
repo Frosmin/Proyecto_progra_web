@@ -18,7 +18,7 @@ export class FormComponent {
 
   setTableroData(tableroData: {size: number, tablero: number[][]}, templateEditor: TemplateEditorComponent) {
     templateEditor.tableroSize = tableroData.size;
-    templateEditor.tablero = tableroData.tablero;
+    // templateEditor.tablero = tableroData.tablero;
     templateEditor.tableroCreado = true;
   }
 }

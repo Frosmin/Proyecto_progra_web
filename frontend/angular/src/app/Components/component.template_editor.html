@@ -11,7 +11,7 @@
       @for(fila of tablero; track $index) {
         <div class="fila">
           @for(celda of fila; track $index) {
-            <div class="celda">{{celda}}</div>
+            <app-box [x]="celda.x" [y]="celda.y"></app-box>
           }
         </div>
       }

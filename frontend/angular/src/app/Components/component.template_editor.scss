@@ -43,21 +43,20 @@
   display: flex;
 }
 
-.celda {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #333;
-  margin: -1px 0 0 -1px;
-  font-weight: bold;
-}
+
+
+
 
 /* Alterna colores para crear efecto de tablero de ajedrez */
 .fila:nth-child(odd) .celda:nth-child(even),
 .fila:nth-child(even) .celda:nth-child(odd) {
   background-color: #e0e0e0;
+}
+
+.fila:nth-child(odd):hover .celda:nth-child(even):hover,
+.fila:nth-child(even):hover .celda:nth-child(odd):hover {
+  background-color: #278dcd;
+  cursor: pointer; 
 }
 
 /* Estilos para el formulario de entrada */
