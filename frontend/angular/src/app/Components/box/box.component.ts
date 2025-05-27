@@ -19,7 +19,7 @@ export class BoxComponent {
     this.onClickBox.emit({
       x: this.x, 
       y: this.y, 
-      content: this.content
+      content: this.content !== null ? null: PieceType.QUEEN // Default to QUEEN if no content is provided
     });
   }
 

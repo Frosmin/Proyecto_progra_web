@@ -4,7 +4,7 @@ import { Component, Type } from '@angular/core';
 import { PrefabComponent } from '../Prefabs/prefab.component';
 import { FormsModule } from '@angular/forms';
 import { BoxComponent } from './box/box.component';
-import { BoxType, BoxStatus,PieceType,BoxEvent,CoordinateDictionary,PiecesPositions } from '../utils/BoxTypes';
+import { BoxType, BoxStatus,PieceType,BoxEvent,CoordinateDictionary,PiecePosition } from '../utils/BoxTypes';
 import { ChangeDetectorRef } from '@angular/core';
 import { BoardService } from '../board/board.service';
 
@@ -20,53 +20,24 @@ import { BoardService } from '../board/board.service';
 export class TemplateEditorComponent {
     boardService = inject(BoardService);;
     prefabs: Type<PrefabComponent>[] = [];
-    piecePositions: CoordinateDictionary<PiecesPositions> = {};
+    piecePositions: CoordinateDictionary<PiecePosition> = {};
     tableroSize: number = 8;
     tablero: BoxType[][] = this.boardService.createBoard(this.tableroSize);
     tableroCreado: boolean = true;
 
+
     handleBoxClick(event: BoxEvent) {
         const box = this.tablero[event.x][event.y];
-        box.content = event.content;
 
-        if(event.content == null) {
-            console.log("inserting piece at:", event.x, event.y);
-
-            this.boardService.insertPiece(this.tablero, event.x, event.y, PieceType.QUEEN);
+        if(box.content == null) {
+            this.boardService.insertPiece(this.tablero,{x: event.x, y: event.y, piece: PieceType.QUEEN});
+            this.piecePositions[`${event.x}-${event.y}`] = { piece: PieceType.QUEEN, x: event.x, y: event.y };
         }else{
-
+            delete this.piecePositions[`${event.x}-${event.y}`];
+            this.boardService.removePiece(this.tablero,this.piecePositions, event.x, event.y);
         }
-        box.status = box.status === BoxStatus.EMPTY ? BoxStatus.SELECTED : BoxStatus.EMPTY;
-        
-        // if (event.content === PieceType.QUEEN) {
-        //     console.log("Queen placed at:", event.x, event.y);
-        //     for (let i = 0; i < this.tableroSize; i++) {
-        //         // Vertical
-        //         if (event.y != i) {
-        //             this.tablero[event.x][i].safe = false; // Vertical
-        //         }
-        //         // Horizontal
-        //         if (event.x != i) {
-        //             this.tablero[i][event.y].safe = false; // Horizontal
-        //         }
-        //     }
-        //     //Diagonals
-        //     for (let i = 1; i < this.tableroSize; i++) {
-        //         if (event.x + i < this.tableroSize && event.y + i < this.tableroSize) {
-        //             this.tablero[event.x + i][event.y + i].safe = false; // Down Right Diagonal
-        //         }
-        //         if (event.x - i >= 0 && event.y - i >= 0) {
-        //             this.tablero[event.x - i][event.y - i].safe = false; // Up Left Diagonal
-        //         }
-        //         if (event.x + i < this.tableroSize && event.y - i >= 0) {
-        //             this.tablero[event.x + i][event.y - i].safe = false; // Down Left Diagonal
-        //         }
-        //         if (event.x - i >= 0 && event.y + i < this.tableroSize) {
-        //             this.tablero[event.x - i][event.y + i].safe = false; // Up Right Diagonal
-        //         }
-        //     }
-            
-        // }
+        // print the current state of the board
+        console.log(this.tablero.map(row => row.map(box => `${box.x}-${box.y} ${box.safe}, `).join(' ')).join('\n'));
 
     }
     

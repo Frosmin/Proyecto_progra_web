@@ -29,15 +29,15 @@ export type BoxEvent = {
 }
 
 
-export type PiecesPositions= {
-    piece: PieceType;
+export type PiecePosition= {
+    piece: PieceType | null;
     x: number;
     y: number;
 }
 export type CoordinateKey = `${number}-${number}`;
 
 
-export type CoordinateDictionary<PiecesPositions> = {
-    [key in CoordinateKey]?: PiecesPositions;
+export type CoordinateDictionary<PiecePosition> = {
+    [key in CoordinateKey]?: PiecePosition;
 };
 
