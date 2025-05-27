@@ -13,7 +13,7 @@ function isValid(
     if (board[row - i][col + i] === 1) return false;
   }
   // up left diagonal
-  for (let i = 1; row - i >= 0 && col - i < n; i++) {
+  for (let i = 1; row - i >= 0 && col - i >= 0; i++) {
     if (board[row - i][col - i] === 1) return false;
   }
 
