@@ -16,12 +16,6 @@ export class BoxComponent {
   @Input() safe: boolean = false;
 
   onClick() {
-    if(this.content === null) {
-      this.content = PieceType.QUEEN; 
-      
-    }else{
-      this.content = null; 
-    }
     this.onClickBox.emit({
       x: this.x, 
       y: this.y, 

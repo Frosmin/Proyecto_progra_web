@@ -14,7 +14,7 @@ export enum BoxStatus{
 }
 
 export type BoxType = {
-    id: number,
+    id: string,
     x: number;
     y: number;
     content: PieceType | null;
@@ -27,4 +27,17 @@ export type BoxEvent = {
     y: number;
     content: PieceType | null;
 }
+
+
+export type PiecesPositions= {
+    piece: PieceType;
+    x: number;
+    y: number;
+}
+export type CoordinateKey = `${number}-${number}`;
+
+
+export type CoordinateDictionary<PiecesPositions> = {
+    [key in CoordinateKey]?: PiecesPositions;
+};
 
