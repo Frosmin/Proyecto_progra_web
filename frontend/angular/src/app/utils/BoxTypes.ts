@@ -19,5 +19,12 @@ export type BoxType = {
     y: number;
     content: PieceType | null;
     status: BoxStatus;
+    safe: boolean;
 };
+
+export type BoxEvent = {
+    x: number;
+    y: number;
+    content: PieceType | null;
+}
 

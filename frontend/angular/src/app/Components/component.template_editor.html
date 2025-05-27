@@ -11,7 +11,12 @@
       @for(fila of tablero; track $index) {
         <div class="fila">
           @for(celda of fila; track $index) {
-            <app-box [x]="celda.x" [y]="celda.y"></app-box>
+            <app-box 
+            [x]="celda.x" 
+            [y]="celda.y" 
+            [safe]="celda.safe"
+            [status]="celda.status"
+            (onClickBox)="handleBoxClick($event)"></app-box>
           }
         </div>
       }

@@ -1,5 +1,5 @@
 <div 
-class="celda" [class.odd]="(x+y) % 2 == 1"
+class="celda" [class.odd]="(x+y) % 2 == 1" [style.background-color]="safe == false && 'red'"
 (click)="onClick()">
 @if(content == "queen"){
     
