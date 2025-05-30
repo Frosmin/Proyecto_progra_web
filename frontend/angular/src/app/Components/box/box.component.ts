@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BoxType,BoxStatus,PieceType ,BoxEvent} from '../../utils/BoxTypes';
+import { Pieces,BoxStatus,PieceType ,BoxEvent} from '../../utils/BoxTypes';
 
 @Component({
   selector: 'app-box',
@@ -9,11 +9,15 @@ import { BoxType,BoxStatus,PieceType ,BoxEvent} from '../../utils/BoxTypes';
 })
 export class BoxComponent {
   @Output() onClickBox = new EventEmitter<BoxEvent>();
+  @Input() editor: boolean = true; // Para determinar si se está en modo edición o no
   @Input() content: PieceType | null = null;
   @Input() x: number = 0;
   @Input() y: number = 0;
   @Input() status: BoxStatus = BoxStatus.SELECTED;
   @Input() safe: boolean = false;
+
+  
+  
 
   onClick() {
     this.onClickBox.emit({
@@ -22,5 +26,6 @@ export class BoxComponent {
       content: this.content !== null ? null: PieceType.QUEEN // Default to QUEEN if no content is provided
     });
   }
+
 
 }

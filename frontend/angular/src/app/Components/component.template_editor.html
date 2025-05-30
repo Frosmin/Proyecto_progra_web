@@ -12,6 +12,7 @@
         <div class="fila">
           @for(celda of fila; track $index) {
             <app-box 
+            [editor]="editor"
             [x]="celda.x" 
             [y]="celda.y" 
             [safe]="celda.safe"
@@ -21,7 +22,20 @@
           }
         </div>
       }
+      @if(dropdownProps.show){
+        <ul class="dropdown" 
+        [style.top]="(100 / tableroSize) * dropdownProps.x + '%'"
+        [style.left]="(100/tableroSize) * dropdownProps.y + '%'">
+          @for(piece of pieces; track $index) {
+            <li (click)="handleSelectPiece(piece.type)">
+              <img src="{{piece.img}}" alt="piece" class="piece-image" width="30" height="30">
+            </li>
+          }
+        </ul>
+      }
     </div>
   </div>
 }
+
+
 </div>

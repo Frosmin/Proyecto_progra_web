@@ -4,7 +4,8 @@ import { Component, Type } from '@angular/core';
 import { PrefabComponent } from '../Prefabs/prefab.component';
 import { FormsModule } from '@angular/forms';
 import { BoxComponent } from './box/box.component';
-import { BoxType, BoxStatus,PieceType,BoxEvent,CoordinateDictionary,PiecePosition } from '../utils/BoxTypes';
+import { BoxType, PieceType,BoxEvent,
+        CoordinateDictionary,PiecePosition,Pieces } from '../utils/BoxTypes';
 import { ChangeDetectorRef } from '@angular/core';
 import { BoardService } from '../board/board.service';
 
@@ -24,21 +25,40 @@ export class TemplateEditorComponent {
     tableroSize: number = 8;
     tablero: BoxType[][] = this.boardService.createBoard(this.tableroSize);
     tableroCreado: boolean = true;
+    readonly pieces = Pieces;
+
+    dropdownProps: { show: boolean; x: number; y: number } = {
+        show: false,
+        x: 0,
+        y: 0,
+    };
 
 
     handleBoxClick(event: BoxEvent) {
         const box = this.tablero[event.x][event.y];
 
-        if(box.content == null) {
-            this.boardService.insertPiece(this.tablero,{x: event.x, y: event.y, piece: PieceType.QUEEN});
-            this.piecePositions[`${event.x}-${event.y}`] = { piece: PieceType.QUEEN, x: event.x, y: event.y };
+        if(this.editor){
+            if(box.content == null) {
+                this.dropdownProps.show = true;
+                this.dropdownProps.x = event.x;
+                this.dropdownProps.y = event.y;
+                
+            }else{
+                delete this.piecePositions[`${event.x}-${event.y}`];
+                this.boardService.removePiece(this.tablero,this.piecePositions, event.x, event.y);
+            }
         }else{
-            delete this.piecePositions[`${event.x}-${event.y}`];
-            this.boardService.removePiece(this.tablero,this.piecePositions, event.x, event.y);
+            // Logica para cuando no se está en modo edición
         }
-        // print the current state of the board
-        console.log(this.tablero.map(row => row.map(box => `${box.x}-${box.y} ${box.safe}, `).join(' ')).join('\n'));
+        
+    }
 
+    handleSelectPiece(pieceType: PieceType) {
+        const x: number = this.dropdownProps.x;
+        const y : number = this.dropdownProps.y;
+        this.boardService.insertPiece(this.tablero,{x, y, piece: pieceType});
+        this.piecePositions[`${x}-${y}`] = { piece: pieceType, x, y };
+        this.dropdownProps.show = false; // Ocultar el dropdown después de seleccionar
     }
     
 }

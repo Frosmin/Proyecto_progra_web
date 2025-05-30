@@ -41,3 +41,23 @@ export type CoordinateDictionary<PiecePosition> = {
     [key in CoordinateKey]?: PiecePosition;
 };
 
+
+export const Pieces : {type : PieceType, img: string}[] = [
+    {
+        type: PieceType.QUEEN,
+        img : 'queen.png'
+    },
+    {
+        type: PieceType.BISHOP,
+        img : 'bishop.png'
+    },
+    {
+        type: PieceType.KNIGHT,
+        img : 'knight.png'
+    },
+    {
+        type: PieceType.ROOK,
+        img : 'rook.png'
+    }
+]
+    

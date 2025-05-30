@@ -1,5 +1,6 @@
 
 .celda {
+    position: relative;
     width: 60px;
     height: 60px;
     display: flex;
@@ -19,3 +20,4 @@ cursor: pointer;
 .celda:active{
 transform: scale(0.9);
 }
+
