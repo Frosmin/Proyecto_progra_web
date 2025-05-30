@@ -12,13 +12,15 @@ import { ButtonListComponent } from '../Components/creatorButton/component.butto
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
-  addPrefabToEditor(prefab: PrefabComponent, templateEditor: TemplateEditorComponent) {
-    templateEditor.prefabs.push(prefab.constructor as Type<PrefabComponent>); 
-  }
+  editor: boolean = true; // Para determinar si se está en modo edición o no
 
   setTableroData(tableroData: {size: number, tablero: number[][]}, templateEditor: TemplateEditorComponent) {
     templateEditor.tableroSize = tableroData.size;
     // templateEditor.tablero = tableroData.tablero;
     templateEditor.tableroCreado = true;
+  }
+
+  setEditorState(editorState: boolean) {
+    this.editor = editorState;
   }
 }

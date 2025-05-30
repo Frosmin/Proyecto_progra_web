@@ -9,6 +9,8 @@
   <!-- <button (click)="procesarNumero()" class="button">Crear Tablero</button> -->
 </div>
 
+
+
 <div class="button-list">
   <!-- botton para crear tablero es especial :D-->
   <div class="button-option">
@@ -18,6 +20,13 @@
       (addPrefab)="procesarNumero()"
     />
   </div>
+  <div class="button-list">
+    <!-- botton para crear tablero es especial :D-->
+    <div class="button-option">
+      <button class="btn btn-primary"
+      (click)="toggleEditor()"
+      >{{editor ? "Cambiar a modo visualizador" : "Cambiar a modo editor"}}</button>
+    </div>
 
   <!-- @for(button of buttons; track button.label) {
   <div class="button-option">

@@ -1,4 +1,4 @@
-import { inject, NgModule } from '@angular/core';
+import { inject, Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Component, Type } from '@angular/core';
 import { PrefabComponent } from '../Prefabs/prefab.component';
@@ -18,8 +18,8 @@ import { BoardService } from '../board/board.service';
     standalone: true
 })
 export class TemplateEditorComponent {
+    @Input() editor : boolean = true;
     boardService = inject(BoardService);;
-    prefabs: Type<PrefabComponent>[] = [];
     piecePositions: CoordinateDictionary<PiecePosition> = {};
     tableroSize: number = 8;
     tablero: BoxType[][] = this.boardService.createBoard(this.tableroSize);

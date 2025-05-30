@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output,Input, EventEmitter } from '@angular/core';
 import { prefabOptions } from '../../utils/prefabTypes';
 import { PrefabComponent } from '../../Prefabs/prefab.component';
 import { CreatorButtonComponent } from './component.button';
@@ -13,10 +13,9 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./component.buttonList.css']
 })
 export class ButtonListComponent {
-    @Output() prefabCreated = new EventEmitter<PrefabComponent>();
     @Output() tableroCreado = new EventEmitter<{size: number, tablero: number[][]}>();
-
-    // Propiedad para el input de número
+    @Output() editorChange = new EventEmitter<boolean>();
+    @Input() editor: boolean = true; // Para determinar si se está en modo edición o no
     numeroValue: number | null = null;
 
     buttons = prefabOptions[1].prefabs.map(option => ({
@@ -45,8 +44,9 @@ export class ButtonListComponent {
         }
         return tablero;
     }
-
-    onButtonClick(prefab: PrefabComponent) {
-        this.prefabCreated.emit(prefab); 
+    toggleEditor() {
+        this.editor = !this.editor;
+        this.editorChange.emit(this.editor);
     }
+
 }

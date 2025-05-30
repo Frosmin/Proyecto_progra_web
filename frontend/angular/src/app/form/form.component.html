@@ -2,12 +2,14 @@
 
     <div class="button-list">
         <app-button-list 
-            (prefabCreated)="addPrefabToEditor($event, templateEditor)"
+            (editorChange)="setEditorState($event)"
             (tableroCreado)="setTableroData($event, templateEditor)">
         </app-button-list>
     </div>
     <div class="template-editor">
-        <app-template-editor #templateEditor></app-template-editor>
+        <app-template-editor #templateEditor
+            [editor]="editor"
+        ></app-template-editor>
     </div>
 
 </section>
