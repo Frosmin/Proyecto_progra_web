@@ -44,8 +44,8 @@ export class TemplateEditorComponent {
                 this.dropdownProps.y = event.y;
                 
             }else{
-                delete this.piecePositions[`${event.x}-${event.y}`];
                 this.boardService.removePiece(this.tablero,this.piecePositions, event.x, event.y);
+                console.log(this.piecePositions);
             }
         }else{
             // Logica para cuando no se está en modo edición
@@ -56,9 +56,10 @@ export class TemplateEditorComponent {
     handleSelectPiece(pieceType: PieceType) {
         const x: number = this.dropdownProps.x;
         const y : number = this.dropdownProps.y;
-        this.boardService.insertPiece(this.tablero,{x, y, piece: pieceType});
+        // this.boardService.insertPiece(this.tablero,{x, y, piece: pieceType});
+        this.tablero[x][y].content = pieceType;
         this.piecePositions[`${x}-${y}`] = { piece: pieceType, x, y };
-        this.dropdownProps.show = false; // Ocultar el dropdown después de seleccionar
+        this.dropdownProps.show = false; 
     }
     
 }

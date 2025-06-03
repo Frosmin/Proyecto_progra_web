@@ -82,25 +82,10 @@ export class BoardService {
     }
   }
 
-  removePiece(board: BoxType[][],piecePositions  :CoordinateDictionary<PiecePosition> ,x : number, y : number ) : BoxType[][] {
+  removePiece(board: BoxType[][],piecePositions  :CoordinateDictionary<PiecePosition> ,x : number, y : number ) {
     const box : BoxType = board[x][y];
     box.content = null;
- // Reset the board to clear all safe boxes
-    this.cleanBoard(board);
-    // Recalculate safe boxes
-    for( const piecePosition of Object.values(piecePositions)) {
-      console.log("Updating piece");
-      if (piecePosition) {
-        switch (piecePosition.piece) {
-          case PieceType.QUEEN:
-            board = this.moveQueen(board, piecePosition.x, piecePosition.y);
-            break;
-          default:
-            console.warn(`Piece type ${piecePosition.piece} not implemented for removal.`);
-        }
-      }
-    }
-    return board;
+    delete piecePositions[`${x}-${y}`];
 
   }
 
