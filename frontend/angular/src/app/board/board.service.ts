@@ -175,6 +175,7 @@ export class BoardService {
         if (box.status === BoxStatus.HIGHLIGHTED) {
           box.status = BoxStatus.EMPTY;
         }
+        box.safe = true; // Reset safe status
       }
     }
   }

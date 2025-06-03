@@ -19,7 +19,13 @@ import { BoardService } from '../board/board.service';
     standalone: true
 })
 export class TemplateEditorComponent {
-    @Input() editor : boolean = true;
+    _editor :boolean = true;
+    @Input() 
+    get editor(): boolean {return this._editor;}
+    set editor(value: boolean) {
+        this._editor = value;
+        this.onEditorChange();
+    }
     boardService = inject(BoardService);;
     piecePositions: CoordinateDictionary<PiecePosition> = {};
     tableroSize: number = 8;
@@ -34,6 +40,9 @@ export class TemplateEditorComponent {
         y: 0,
     };
 
+    onEditorChange(): void {
+        this.boardService.unhighlightBoard(this.tablero);
+    }
 
     handleBoxClick(event: BoxEvent) {
         const box = this.tablero[event.x][event.y];
@@ -76,6 +85,7 @@ export class TemplateEditorComponent {
     }
     
     handleValidateBoard() {
+        this.boardService.unhighlightBoard(this.tablero);
         this.boardService.validateBoard(this.tablero, this.piecePositions);
         console.log(this.tablero);
     }
