@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BoxType, PieceType, BoxEvent, BoxStatus,PiecePosition, CoordinateDictionary } from '../utils/BoxTypes';
+import { of } from 'rxjs';
 
 type pair = {
   x: number;
@@ -27,11 +28,11 @@ export class BoardService {
     );
   }
 
-  rookMovement(board: BoxType[][], x: number, y: number): pair[]{
+  rookMovement(board: BoxType[][], x: number, y: number, stop: boolean = true): pair[]{
     const  movements : pair[] = [];
     // left horizontal movement
     for (let i = y - 1; i >= 0; i--) {
-      if (board[x][i].content === null) {
+      if (board[x][i].content === null || !stop) {
         movements.push({ x, y: i });
       } else {
         break;
@@ -39,7 +40,7 @@ export class BoardService {
     }
     // right horizontal movement
     for (let i = y + 1; i < board[x].length; i++) {
-      if (board[x][i].content === null) {
+      if (board[x][i].content === null || !stop) {
         movements.push({ x, y: i });
       } else {
         break;
@@ -47,7 +48,7 @@ export class BoardService {
     }
     // up vertical movement
     for (let i = x - 1; i >= 0; i--) {
-      if (board[i][y].content === null) {
+      if (board[i][y].content === null || !stop) {
         movements.push({ x: i, y });
       } else {
         break;
@@ -55,7 +56,7 @@ export class BoardService {
     }
     // down vertical movement
     for (let i = x + 1; i < board.length; i++) {
-      if (board[i][y].content === null) {
+      if (board[i][y].content === null || !stop) {
         movements.push({ x: i, y });
       } else {
         break;
@@ -66,12 +67,12 @@ export class BoardService {
     return movements;
   }
 
-  bishopMovement(board: BoxType[][], x: number, y: number): pair[]{
+  bishopMovement(board: BoxType[][], x: number, y: number, stop : boolean = true): pair[]{
     const movements: pair[] = [];
     // Down Right Diagonal
     for (let i = 1; i < board.length; i++) {
       if (x + i < board.length && y + i < board.length) {
-        if (board[x + i][y + i].content === null) {
+        if (board[x + i][y + i].content === null || !stop) {
           movements.push({ x: x + i, y: y + i });
         } else {
           break;
@@ -81,7 +82,7 @@ export class BoardService {
     // Up Left Diagonal
     for (let i = 1; i < board.length; i++) {
       if (x - i >= 0 && y - i >= 0) {
-        if (board[x - i][y - i].content === null) {
+        if (board[x - i][y - i].content === null || !stop) {
           movements.push({ x: x - i, y: y - i });
         } else {
           break;
@@ -91,7 +92,7 @@ export class BoardService {
     // Down Left Diagonal
     for (let i = 1; i < board.length; i++) {
       if (x + i < board.length && y - i >= 0) {
-        if (board[x + i][y - i].content === null) {
+        if (board[x + i][y - i].content === null || !stop) {
           movements.push({ x: x + i, y: y - i });
         } else {
           break;
@@ -101,7 +102,7 @@ export class BoardService {
     // Up Right Diagonal
     for (let i = 1; i < board.length; i++) {
       if (x - i >= 0 && y + i < board.length) {
-        if (board[x - i][y + i].content === null) {
+        if (board[x - i][y + i].content === null || !stop) {
           movements.push({ x: x - i, y: y + i });
         } else {
           break;
@@ -112,15 +113,15 @@ export class BoardService {
     return movements;
   }
 
-  queenMovement(board: BoxType[][], x: number, y: number): pair[]{
+  queenMovement(board: BoxType[][], x: number, y: number, stop : boolean = true): pair[]{
     const movements: pair[] = [];
     // Combine rook and bishop movements
-    movements.push(...this.rookMovement(board, x, y));
-    movements.push(...this.bishopMovement(board, x, y));
+    movements.push(...this.rookMovement(board, x, y, stop));
+    movements.push(...this.bishopMovement(board, x, y,stop));
     return movements;
   }
 
-  knightMovement(board: BoxType[][], x: number, y: number): pair[]{
+  knightMovement(board: BoxType[][], x: number, y: number, stop : boolean = true): pair[]{
     const movements: pair[] = [];
     const knightMoves: pair[] = [
       { x: x - 2, y: y - 1 }, { x: x - 2, y: y + 1 },
@@ -131,7 +132,7 @@ export class BoardService {
 
     knightMoves.forEach(move => {
       if (move.x >= 0 && move.x < board.length && move.y >= 0 && move.y < board[0].length) {
-        if (board[move.x][move.y].content === null) {
+        if (board[move.x][move.y].content === null || !stop) {
           movements.push(move);
         }
       }
@@ -197,6 +198,49 @@ export class BoardService {
     }
   }
 
+  removePiece(board: BoxType[][],piecePositions  :CoordinateDictionary<PiecePosition> ,x : number, y : number ) {
+    const box : BoxType = board[x][y];
+    box.content = null;
+    delete piecePositions[`${x}-${y}`];
+  }
+
+  validateBoard(board : BoxType[][], piecePositions : CoordinateDictionary<PiecePosition>) : void {
+      // Mark unsafe boxes
+      const unsafeBoxes: pair[] = [];
+      let x : number;
+      let y : number;
+      for(const [key,value] of Object.entries(piecePositions)) {
+        console.log(key,value);
+        if( value != undefined) {
+          x = value.x;
+          y = value.y;
+          switch (value.piece) {
+            case PieceType.QUEEN:
+              unsafeBoxes.push(...this.queenMovement(board, x, y, false));
+              break;
+            case PieceType.ROOK:
+              unsafeBoxes.push(...this.rookMovement(board, x, y, false));
+              break;
+            case PieceType.BISHOP:
+              unsafeBoxes.push(...this.bishopMovement(board, x, y, false));
+              break;
+            case PieceType.KNIGHT:
+              unsafeBoxes.push(...this.knightMovement(board, x, y, false));
+              break;
+            default:
+              console.warn(`Piece type ${value.piece} not implemented for validation.`);
+          }
+        }
+        // mark unsafe boxes in the board
+        unsafeBoxes.forEach(box => {
+          if (box.x >= 0 && box.x < board.length && box.y >= 0 && box.y < board[0].length) {
+            const unsafeBox: BoxType = board[box.x][box.y];
+            unsafeBox.safe = false;
+          }
+        });
+      }
+  }
+
   
 
   cleanBoard(board: BoxType[][]): void {
@@ -210,11 +254,7 @@ export class BoardService {
     }
   }
 
-  removePiece(board: BoxType[][],piecePositions  :CoordinateDictionary<PiecePosition> ,x : number, y : number ) {
-    const box : BoxType = board[x][y];
-    box.content = null;
-    delete piecePositions[`${x}-${y}`];
-  }
+  
 
 }
 

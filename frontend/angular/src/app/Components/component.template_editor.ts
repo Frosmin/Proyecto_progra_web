@@ -75,4 +75,8 @@ export class TemplateEditorComponent {
         this.dropdownProps.show = false; 
     }
     
+    handleValidateBoard() {
+        this.boardService.validateBoard(this.tablero, this.piecePositions);
+        console.log(this.tablero);
+    }
 }

@@ -1,5 +1,5 @@
 <div 
-class="celda" [style.background-color]="(x+y) % 2 == 1 ? '#c0c0c0' : 'white'" 
+class="celda" [style.background-color]="(!safe && content != null) ? '#f00':(x+y) % 2 == 1 ? '#c0c0c0' : 'white'" 
 (click)="onClick()">
 @if(content == "queen"){ 
     <img src="queen.png" alt="Queen Piece" class="piece-image" width="50" height="50">

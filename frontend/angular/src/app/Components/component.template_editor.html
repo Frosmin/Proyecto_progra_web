@@ -34,6 +34,11 @@
         </ul>
       }
     </div>
+    @if(!editor){
+      <div class="btn-container">
+        <button (click)="handleValidateBoard()">Verificar</button>
+      </div>
+    }
   </div>
 }
 
