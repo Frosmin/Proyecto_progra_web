@@ -97,16 +97,96 @@ export class BoardService {
 
     return movements;
   }
+
+  bishopMovement(board: BoxType[][], x: number, y: number): pair[]{
+    const movements: pair[] = [];
+    // Down Right Diagonal
+    for (let i = 1; i < board.length; i++) {
+      if (x + i < board.length && y + i < board.length) {
+        if (board[x + i][y + i].content === null) {
+          movements.push({ x: x + i, y: y + i });
+        } else {
+          break;
+        }
+      }
+    }
+    // Up Left Diagonal
+    for (let i = 1; i < board.length; i++) {
+      if (x - i >= 0 && y - i >= 0) {
+        if (board[x - i][y - i].content === null) {
+          movements.push({ x: x - i, y: y - i });
+        } else {
+          break;
+        }
+      }
+    }
+    // Down Left Diagonal
+    for (let i = 1; i < board.length; i++) {
+      if (x + i < board.length && y - i >= 0) {
+        if (board[x + i][y - i].content === null) {
+          movements.push({ x: x + i, y: y - i });
+        } else {
+          break;
+        }
+      }
+    }
+    // Up Right Diagonal
+    for (let i = 1; i < board.length; i++) {
+      if (x - i >= 0 && y + i < board.length) {
+        if (board[x - i][y + i].content === null) {
+          movements.push({ x: x - i, y: y + i });
+        } else {
+          break;
+        }
+      }
+    }
+
+    return movements;
+  }
+
+  queenMovement(board: BoxType[][], x: number, y: number): pair[]{
+    const movements: pair[] = [];
+    // Combine rook and bishop movements
+    movements.push(...this.rookMovement(board, x, y));
+    movements.push(...this.bishopMovement(board, x, y));
+    return movements;
+  }
+
+  knightMovement(board: BoxType[][], x: number, y: number): pair[]{
+    const movements: pair[] = [];
+    const knightMoves: pair[] = [
+      { x: x - 2, y: y - 1 }, { x: x - 2, y: y + 1 },
+      { x: x + 2, y: y - 1 }, { x: x + 2, y: y + 1 },
+      { x: x - 1, y: y - 2 }, { x: x - 1, y: y + 2 },
+      { x: x + 1, y: y - 2 }, { x: x + 1, y: y + 2 }
+    ];
+
+    knightMoves.forEach(move => {
+      if (move.x >= 0 && move.x < board.length && move.y >= 0 && move.y < board[0].length) {
+        if (board[move.x][move.y].content === null) {
+          movements.push(move);
+        }
+      }
+    });
+
+    return movements;
+  }
   
 
   showValidMovements(board: BoxType[][], piecePosition: PiecePosition) : void {
     const validMovements : pair[] = [];
     switch (piecePosition.piece) {
       case PieceType.QUEEN:
-        // validMovements.push(...this.moveQueen(board, piecePosition.x, piecePosition.y));
+        validMovements.push(...this.queenMovement(board, piecePosition.x, piecePosition.y));
         break;
       case PieceType.ROOK:
         validMovements.push(...this.rookMovement(board, piecePosition.x, piecePosition.y));
+        break;
+      case PieceType.BISHOP:
+        validMovements.push(...this.bishopMovement(board, piecePosition.x, piecePosition.y));
+        break;
+      case PieceType.KNIGHT:
+        validMovements.push(...this.knightMovement(board, piecePosition.x, piecePosition.y));
         break;
       default:
         console.warn(`Piece type ${piecePosition.piece} not implemented for movement.`);
