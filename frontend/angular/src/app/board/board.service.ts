@@ -27,38 +27,6 @@ export class BoardService {
     );
   }
 
-
-  moveQueen(board: BoxType[][], x: number, y : number) : BoxType[][] {
-    const box: BoxType = board[x][y];
-    box.content = PieceType.QUEEN;
-    // Mark rows and columns as unsafe
-    for (let i = 0; i < board.length; i++) {
-      if (i !== y) {
-        board[x][i].safe = false; // Horizontal
-      }
-      if (i !== x) {
-        board[i][y].safe = false; // Vertical
-      }
-    }
-    // Mark diagonals as unsafe
-    for (let i = 1; i < board.length; i++) {
-      if (x + i < board.length && y + i < board.length) {
-        board[x + i][y + i].safe = false; // Down Right Diagonal
-      }
-      if (x - i >= 0 && y - i >= 0) {
-        board[x - i][y - i].safe = false; // Up Left Diagonal
-      }
-      if (x + i < board.length && y - i >= 0) {
-        board[x + i][y - i].safe = false; // Down Left Diagonal
-      }
-      if (x - i >= 0 && y + i < board.length) {
-        board[x - i][y + i].safe = false; // Up Right Diagonal
-      }
-    }
-
-    return board;
-  }
-
   rookMovement(board: BoxType[][], x: number, y: number): pair[]{
     const  movements : pair[] = [];
     // left horizontal movement
@@ -199,23 +167,37 @@ export class BoardService {
     });
   }
 
-  insertPiece(board: BoxType[][], piecePosition : PiecePosition) : void {
-    
-    const box: BoxType = board[piecePosition.x][piecePosition.y];
-
-
-    box.content = piecePosition.piece;
-
-    switch (piecePosition.piece) {
-      case PieceType.QUEEN:
-        board = this.moveQueen(board, piecePosition.x, piecePosition.y);
-        break;
-      default:
-        console.warn(`Piece type ${piecePosition.piece} not implemented for insertion.`);
+  unhighlightBoard(board: BoxType[][]): void {
+    for (let x = 0; x < board.length; x++) {
+      for (let y = 0; y < board[x].length; y++) {
+        const box: BoxType = board[x][y];
+        if (box.status === BoxStatus.HIGHLIGHTED) {
+          box.status = BoxStatus.EMPTY;
+        }
+      }
     }
-
-
   }
+  movePiece(
+      board : BoxType[][],
+      piecePositions: CoordinateDictionary<PiecePosition>,
+      selectedPiece : PiecePosition, 
+      xto : number, yto : number ) : void{
+
+    if(board[xto][yto].status == BoxStatus.HIGHLIGHTED) {
+      const box: BoxType = board[selectedPiece.x][selectedPiece.y];
+      box.content = null;
+      box.status = BoxStatus.EMPTY;
+
+      const newBox: BoxType = board[xto][yto];
+      newBox.content = selectedPiece.piece;
+      newBox.status = BoxStatus.EMPTY;
+
+      delete piecePositions[`${selectedPiece.x}-${selectedPiece.y}`];
+      piecePositions[`${xto}-${yto}`] = { piece: selectedPiece.piece, x: xto, y: yto };
+    }
+  }
+
+  
 
   cleanBoard(board: BoxType[][]): void {
     for (let x = 0; x < board.length; x++) {
@@ -232,7 +214,23 @@ export class BoardService {
     const box : BoxType = board[x][y];
     box.content = null;
     delete piecePositions[`${x}-${y}`];
-
   }
 
 }
+
+
+// insertPiece(board: BoxType[][], piecePosition : PiecePosition) : void {
+    
+//   const box: BoxType = board[piecePosition.x][piecePosition.y];
+
+
+//   box.content = piecePosition.piece;
+
+//   switch (piecePosition.piece) {
+//     case PieceType.QUEEN:
+//       board = this.moveQueen(board, piecePosition.x, piecePosition.y);
+//       break;
+//     default:
+//       console.warn(`Piece type ${piecePosition.piece} not implemented for insertion.`);
+//   }
+// }

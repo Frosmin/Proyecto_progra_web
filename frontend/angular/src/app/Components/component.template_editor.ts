@@ -26,6 +26,7 @@ export class TemplateEditorComponent {
     tablero: BoxType[][] = this.boardService.createBoard(this.tableroSize);
     tableroCreado: boolean = true;
     readonly pieces = Pieces;
+    selectedPiece: PiecePosition | null = null;
 
     dropdownProps: { show: boolean; x: number; y: number } = {
         show: false,
@@ -51,9 +52,17 @@ export class TemplateEditorComponent {
             }
         }else{
             if(box.content != null) {
-                this.boardService.showValidMovements(this.tablero,{piece : box.content, x :event.x,y : event.y});
-                console.log(this.tablero);
+                this.boardService.unhighlightBoard(this.tablero);
+                this.selectedPiece = {piece: box.content, x, y};
+                this.boardService.showValidMovements(this.tablero,this.selectedPiece);
+            }else{
+                if(this.selectedPiece) {
+                    this.boardService.movePiece(this.tablero, this.piecePositions, this.selectedPiece, x, y);
+                    this.selectedPiece = null;
+                }
+                this.boardService.unhighlightBoard(this.tablero);
             }
+
         }
         
     }
