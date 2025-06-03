@@ -9,6 +9,8 @@ class="celda" [style.background-color]="(x+y) % 2 == 1 ? '#c0c0c0' : 'white'"
     <img src="bishop.png" alt="Bishop Piece" class="piece-image" width="50" height="50">
 }@else if (content == "knight"){
     <img src="knight.png" alt="Knight Piece" class="piece-image" width="50" height="50">
+}@else if (status == "highlighted"){
+    <div class="dot"></div>
 }
 
 </div>

@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BoxType, PieceType, BoxEvent, BoxStatus,PiecePosition, CoordinateDictionary } from '../utils/BoxTypes';
 
+type pair = {
+  x: number;
+  y: number;
+};
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -51,6 +57,66 @@ export class BoardService {
     }
 
     return board;
+  }
+
+  rookMovement(board: BoxType[][], x: number, y: number): pair[]{
+    const  movements : pair[] = [];
+    // left horizontal movement
+    for (let i = y - 1; i >= 0; i--) {
+      if (board[x][i].content === null) {
+        movements.push({ x, y: i });
+      } else {
+        break;
+      }
+    }
+    // right horizontal movement
+    for (let i = y + 1; i < board[x].length; i++) {
+      if (board[x][i].content === null) {
+        movements.push({ x, y: i });
+      } else {
+        break;
+      }
+    }
+    // up vertical movement
+    for (let i = x - 1; i >= 0; i--) {
+      if (board[i][y].content === null) {
+        movements.push({ x: i, y });
+      } else {
+        break;
+      }
+    }
+    // down vertical movement
+    for (let i = x + 1; i < board.length; i++) {
+      if (board[i][y].content === null) {
+        movements.push({ x: i, y });
+      } else {
+        break;
+      }
+    }
+    // console.log(movements);
+
+    return movements;
+  }
+  
+
+  showValidMovements(board: BoxType[][], piecePosition: PiecePosition) : void {
+    const validMovements : pair[] = [];
+    switch (piecePosition.piece) {
+      case PieceType.QUEEN:
+        // validMovements.push(...this.moveQueen(board, piecePosition.x, piecePosition.y));
+        break;
+      case PieceType.ROOK:
+        validMovements.push(...this.rookMovement(board, piecePosition.x, piecePosition.y));
+        break;
+      default:
+        console.warn(`Piece type ${piecePosition.piece} not implemented for movement.`);
+    }
+    // Set box status to highlighted for valid movements
+    validMovements.forEach(movement => {
+      console.log(`Highlighting box at (${movement.x}, ${movement.y})`);
+      const box: BoxType = board[movement.x][movement.y];
+      box.status = BoxStatus.HIGHLIGHTED;
+    });
   }
 
   insertPiece(board: BoxType[][], piecePosition : PiecePosition) : void {

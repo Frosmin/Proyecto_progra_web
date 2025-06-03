@@ -21,3 +21,11 @@ cursor: pointer;
 transform: scale(0.9);
 }
 
+.dot{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #5555;
+}
+

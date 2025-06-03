@@ -36,19 +36,24 @@ export class TemplateEditorComponent {
 
     handleBoxClick(event: BoxEvent) {
         const box = this.tablero[event.x][event.y];
+        const x = event.x;
+        const y = event.y;
 
         if(this.editor){
             if(box.content == null) {
                 this.dropdownProps.show = true;
-                this.dropdownProps.x = event.x;
-                this.dropdownProps.y = event.y;
+                this.dropdownProps.x = x;
+                this.dropdownProps.y = y;
                 
             }else{
-                this.boardService.removePiece(this.tablero,this.piecePositions, event.x, event.y);
+                this.boardService.removePiece(this.tablero,this.piecePositions, x, y);
                 console.log(this.piecePositions);
             }
         }else{
-            // Logica para cuando no se está en modo edición
+            if(box.content != null) {
+                this.boardService.showValidMovements(this.tablero,{piece : box.content, x :event.x,y : event.y});
+                console.log(this.tablero);
+            }
         }
         
     }
@@ -56,7 +61,6 @@ export class TemplateEditorComponent {
     handleSelectPiece(pieceType: PieceType) {
         const x: number = this.dropdownProps.x;
         const y : number = this.dropdownProps.y;
-        // this.boardService.insertPiece(this.tablero,{x, y, piece: pieceType});
         this.tablero[x][y].content = pieceType;
         this.piecePositions[`${x}-${y}`] = { piece: pieceType, x, y };
         this.dropdownProps.show = false; 
