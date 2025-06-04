@@ -1,13 +1,49 @@
-<header class="main-header">
-    <div class="logo">
-      <h1 [routerLink]="['']" style="cursor: pointer;">Forms UMSS</h1>
+<mat-toolbar>
+  <div class="navbar-container">
+    <div>
+      <button matButton [matMenuTriggerFor]="menu" class="navbar-icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          routerLink="/"
+          routerLinkActive="active-btn"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Home
+        </button>
+        <button
+          mat-menu-item
+          routerLink="/crear"
+          routerLinkActive="active-btn"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Crear tablero
+        </button>
+      </mat-menu>
+
+      <!-- <button matIconButton class="navbar-icon"> -->
+      <!-- <mat-icon>menu</mat-icon> -->
+      <!-- </button> -->
+      <span id="menuTitle"><strong>Problema de las N Reinas</strong></span>
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
-        <li><a routerLink="/crear" routerLinkActive="active">Crear Formulario</a></li>
-        <li><a routerLink="/viewform" routerLinkActive="active">Mis Formularios</a></li>
-        <li><a routerLink="/respuestas" routerLinkActive="active">Respuestas</a></li>
-      </ul>
-    </nav>
-  </header>
+
+    <div class="navbar-options">
+      <a
+        mat-button
+        routerLink="/"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Home</a
+      >
+      <a
+        mat-button
+        routerLink="/crear"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Crear tablero</a
+      >
+    </div>
+  </div>
+</mat-toolbar>
