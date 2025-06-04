@@ -1,18 +1,23 @@
 package main
 
 import (
-	"net/http"
 	"backend/db"
 	"backend/routes"
-	"github.com/gorilla/mux"
+	"log"
+	"os/user"
 )
 
 func main() {
 
 	db.Connect()
 
-	r := mux.NewRouter()
+	// Migración de modelos
+	db.DB.AutoMigrate(
+		user.User{},
+	)
 
-	r.HandleFunc("/", routes.Homehandler)
-	http.ListenAndServe(":8080", r)
+	r := routes.SetupRouter()
+
+	log.Println("Servidor escuchando en :8080")
+	log.Fatal(r.Run(":8080"))
 }
