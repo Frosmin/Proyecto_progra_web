@@ -8,11 +8,10 @@
     min="2"
     max="12"
     [(ngModel)]="numeroValue"
-    placeholder="Ingrese un número (2-12)"
+    placeholder="NxN"
+    class="input-number"
   />
 </div>
-
-
 
 <div class="button-list">
   <!-- botton para crear tablero es especial :D-->
@@ -24,14 +23,22 @@
     />
   </div>
   <div class="button-list">
-    <!-- botton para crear tablero es especial :D-->
     <div class="button-option">
-      <button class="btn btn-primary"
-      (click)="toggleEditor()"
-      >{{editor ? "Cambiar a modo visualizador" : "Cambiar a modo editor"}}</button>
+
+
+      <app-creator-button
+      [name]="editor ? 'Cambiar a modo visualizador' : 'Cambiar a modo editor'"
+      [buttonColor]="'#4CAF50'"
+      (addPrefab)="toggleEditor()"
+    />
+
+
+
+      
     </div>
 
-  <!-- @for(button of buttons; track button.label) {
+
+    <!-- @for(button of buttons; track button.label) {
   <div class="button-option">
     <app-creator-button
       [name]="button.label"
@@ -39,4 +46,5 @@
     />
   </div>
   } -->
+  </div>
 </div>
