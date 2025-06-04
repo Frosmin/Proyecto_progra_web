@@ -6,7 +6,7 @@ import { TextQuestionComponent } from '../../Prefabs/text-question/text-question
   selector: 'app-creator-button',
   standalone: true,
   template: `
-    <button class="creational-btn" >{{ name }}</button>
+    <button class="creational-btn" (click)="onClick()">{{ name }}</button>
   `,
   styleUrls: ['./component.button.css'],
 })
@@ -24,6 +24,7 @@ export class CreatorButtonComponent implements OnInit {
     }
   }
 
-
-
+  onClick() {
+    this.addPrefab.emit();
+  }
 }
