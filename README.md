@@ -36,7 +36,7 @@ docker run -p 8080:8080 --name backend-contenedor backend
 
 🌐 Acceder al backend: [http://localhost:8080](http://localhost:8080)
 
-### Opción 2: Despliegue Completo usando Docker
+### Opción 2: Despliegue Completo usando Docker.
 
 Para iniciar tanto el frontend como el backend simultáneamente:
 
