@@ -1,12 +1,16 @@
 <h2>Opciones</h2>
 
 <div class="input-form">
+  <label for="tableroSize">Tamaño del tablero:</label>
   <input
+    id="tableroSize"
     type="number"
+    min="2"
+    max="12"
     [(ngModel)]="numeroValue"
-    placeholder="Ingrese un número para el tamaño del tablero"
+    placeholder="Ingrese un número (2-12)"
   />
-  <!-- <button (click)="procesarNumero()" class="button">Crear Tablero</button> -->
+  <button class="btn btn-success" (click)="procesarNumero()">Aplicar</button>
 </div>
 
 

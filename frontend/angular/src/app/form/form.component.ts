@@ -15,10 +15,11 @@ export class FormComponent {
   editor: boolean = true; // Para determinar si se está en modo edición o no
 
   setTableroData(tableroData: {size: number, tablero: number[][]}, templateEditor: TemplateEditorComponent) {
-    templateEditor.tableroSize = tableroData.size;
-    // templateEditor.tablero = tableroData.tablero;
-    templateEditor.tableroCreado = true;
-  }
+  templateEditor.tableroSize = tableroData.size;
+  templateEditor.tablero = templateEditor.boardService.createBoard(tableroData.size);
+  templateEditor.piecePositions = {};  // Reiniciar las posiciones de las piezas
+  templateEditor.tableroCreado = true;
+}
 
   setEditorState(editorState: boolean) {
     this.editor = editorState;
