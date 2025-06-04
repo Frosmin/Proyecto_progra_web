@@ -1,61 +1,89 @@
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$violet-palette,
+      tertiary: mat.$orange-palette,
+      theme-type: light,
+    ),
+    typography: Roboto,
+    density: 0
+  ));
+}
+body {
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+
+:root {
+  @include mat.toolbar-overrides((
+    container-background-color: #8A2BE2,
+    container-text-color: white,
+  ));
+}
+
 /* You can add global styles to this file, and also import other style files */
 /* Estilos globales y mobile-first */
 body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
+    // font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
     color: #333;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
-// pra celular
-  html {
-    font-size: 16px;
-    box-sizing: border-box;
-  }
+// // pra celular
+//   html {
+//     font-size: 16px;
+//     box-sizing: border-box;
+//   }
   
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-  
-
-  @media (max-width: 768px) {
-    html {
-      font-size: 14px;
-    }
-    
-    .features {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .feature-card {
-      width: 100%;
-      max-width: 100%;
-      margin-bottom: 1.5rem;
-    }
-    
-    .content {
-      padding: 1rem;
-    }
-    
-    .home-container h2 {
-      font-size: 2rem;
-    }
-  }
+//   *, *:before, *:after {
+//     box-sizing: inherit;
+//   }
   
 
-  @media (max-width: 480px) {
-    html {
-      font-size: 12px;
-    }
+//   @media (max-width: 768px) {
+//     html {
+//       font-size: 14px;
+//     }
     
-    .home-container h2 {
-      font-size: 1.8rem;
-    }
+//     .features {
+//       flex-direction: column;
+//       align-items: center;
+//     }
     
-    .btn-primary {
-      width: 100%;
-    }
-  }
+//     .feature-card {
+//       width: 100%;
+//       max-width: 100%;
+//       margin-bottom: 1.5rem;
+//     }
+    
+//     .content {
+//       padding: 1rem;
+//     }
+    
+//     .home-container h2 {
+//       font-size: 2rem;
+//     }
+//   }
+  
+
+//   @media (max-width: 480px) {
+//     html {
+//       font-size: 12px;
+//     }
+    
+//     .home-container h2 {
+//       font-size: 1.8rem;
+//     }
+    
+//     .btn-primary {
+//       width: 100%;
+//     }
+//   }
+// // html, body { height: 100%; }
+// // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
