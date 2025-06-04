@@ -4,7 +4,6 @@ import (
 	"backend/db"
 	"backend/routes"
 	"log"
-	"os/user"
 )
 
 func main() {
@@ -12,9 +11,9 @@ func main() {
 	db.Connect()
 
 	// Migración de modelos
-	db.DB.AutoMigrate(
-		user.User{},
-	)
+	// db.DB.AutoMigrate(
+	// 	user.User{},
+	// )
 
 	r := routes.SetupRouter()
 

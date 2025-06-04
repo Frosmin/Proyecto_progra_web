@@ -5,7 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
-var DSN = "host=aws-0-sa-east-1.pooler.supabase.com user=postgres.lexwwxotwfsennaambio password=pepe dbname=postgres port=6543"
+var DSN = "host=aws-0-sa-east-1.pooler.supabase.com user=postgres.ygvifzucugetuqengwov password=pepe dbname=postgres port=5432"
 
 var DB *gorm.DB
 
