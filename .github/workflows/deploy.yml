@@ -20,7 +20,7 @@
           working-directory: frontend/angular #darle la ruta del directorio de package.json
 
         - name: Build-Kar
-          run: npm run build -- --base-href /Generacion-Software/ #RECORDAR poner el nombre del repositorio
+          run: npm run build -- --base-href /Proyecto_progra_web/ #RECORDAR poner el nombre del repositorio
           working-directory: frontend/angular #darle la ruta del directorio de package.json
 
         - name: Artifact upload
