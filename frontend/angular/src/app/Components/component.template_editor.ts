@@ -1,4 +1,4 @@
-import { inject, Input, NgModule } from '@angular/core';
+import { EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Component, Type } from '@angular/core';
 import { PrefabComponent } from '../Prefabs/prefab.component';

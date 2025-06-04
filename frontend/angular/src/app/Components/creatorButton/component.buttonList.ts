@@ -4,10 +4,11 @@ import { PrefabComponent } from '../../Prefabs/prefab.component';
 import { CreatorButtonComponent } from './component.button';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
     selector: 'app-button-list',
-    imports: [CreatorButtonComponent, FormsModule, CommonModule],
+    imports: [CreatorButtonComponent, FormsModule, CommonModule, MatInputModule],
     standalone: true,
     templateUrl: './component.buttonList.html',
     styleUrls: ['./component.buttonList.css']

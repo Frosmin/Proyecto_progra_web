@@ -1,46 +1,54 @@
-<div>
+<div class="editor-container">
   <div class="template-editor-title">
     <h2>Personaliza tu Tablero</h2>
   </div>
 
   <!-- Tablero NxN -->
-@if(tableroCreado) {
+  @if(tableroCreado) {
   <div class="tablero-container">
     <h3>Tablero {{tableroSize}}×{{tableroSize}}</h3>
     <div class="tablero">
       @for(fila of tablero; track $index) {
-        <div class="fila">
-          @for(celda of fila; track $index) {
-            <app-box 
-            [editor]="editor"
-            [x]="celda.x" 
-            [y]="celda.y" 
-            [safe]="celda.safe"
-            [status]="celda.status"
-            [content]="celda.content"
-            (onClickBox)="handleBoxClick($event)"></app-box>
-          }
-        </div>
-      }
-      @if(dropdownProps.show){
-        <ul class="dropdown" 
+      <div class="fila">
+        @for(celda of fila; track $index) {
+        <app-box
+          [editor]="editor"
+          [x]="celda.x"
+          [y]="celda.y"
+          [safe]="celda.safe"
+          [status]="celda.status"
+          [content]="celda.content"
+          (onClickBox)="handleBoxClick($event)"
+        ></app-box>
+        }
+      </div>
+      } @if(dropdownProps.show){
+      <ul
+        class="dropdown"
         [style.top]="(100 / tableroSize) * dropdownProps.x + '%'"
-        [style.left]="(100/tableroSize) * (dropdownProps.y ) + '%'">
-          @for(piece of pieces; track $index) {
-            <li (click)="handleSelectPiece(piece.type)">
-              <img src="{{piece.img}}" alt="piece" class="piece-image" width="30" height="30">
-            </li>
-          }
-        </ul>
+        [style.left]="(100/tableroSize) * (dropdownProps.y ) + '%'"
+      >
+        @for(piece of pieces; track $index) {
+        <li (click)="handleSelectPiece(piece.type)">
+          <img
+            src="{{piece.img}}"
+            alt="piece"
+            class="piece-image"
+            width="30"
+            height="30"
+          />
+        </li>
+        }
+      </ul>
       }
     </div>
     @if(!editor){
-      <div class="btn-container">
-        <button class="creational-btn" (click)="handleValidateBoard()">Verificar</button>
-      </div>
+    <div class="btn-container">
+      <button class="creational-btn" (click)="handleValidateBoard()">
+        Verificar
+      </button>
+    </div>
     }
   </div>
-}
-
-
+  }
 </div>
