@@ -1,34 +1,9 @@
-<div class="home">
+<div class="container">
   <app-navbar></app-navbar>
 
-
   <main class="content">
-    <div class="home-container" *ngIf="router.url === '/'">
-
-      <h2>Plataforma para crear formularios</h2>
-      <p>Tu plataforma para crear y gestionar formularios de manera sencilla</p>
-      
-      <div class="features">
-        <div class="feature-card">
-          <div class="icon">📝</div>
-          <h3>Crear Formularios</h3>
-          <p>Diseña formularios personalizados con diferentes tipos de preguntas</p>
-          <button routerLink="/crear" class="btn-primary">Comenzar ahora</button>
-        </div>
-        
-        <div class="feature-card">
-          <div class="icon">📊</div>
-          <h3>Vista de los formularios creados</h3>
-          <p>Visualiza un formulario creado de la misma forma que lo vera un usuario</p>
-          <button routerLink="/viewform" class="btn-primary">Ver formularios</button>
-        </div>
-        
-      </div>
-
-    </div>
     <router-outlet></router-outlet>
   </main>
-
   
   <app-footer></app-footer>
 </div>
