@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type Tablero struct {
 	gorm.Model
-
-	Description string  `gorm:"unique;not null"`
-	Positions   []Piece `gorm:"foreignKey:TableroID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
+	Description  string  `json:"description" gorm:"unique;not null"`
+	Positions    []Piece `json:"positions" gorm:"foreignKey:TableroID"`
+	FormularioID uint    `json:"formularioId,omitempty"`
 }

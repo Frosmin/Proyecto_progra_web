@@ -1,9 +1,5 @@
 package models
 
-import (
-	"gorm.io/gorm"
-)
-
 type PieceType string
 
 const (
@@ -14,9 +10,8 @@ const (
 )
 
 type Piece struct {
-	gorm.Model
-
-	Type PieceType `gorm:"type:varchar(20);not null"`
-	PosX int       `gorm:"not null"`
-	PosY int       `gorm:"not null"`
+	Type      PieceType `json:"type" gorm:"type:varchar(20);not null"`
+	PosX      int       `json:"posX" gorm:"not null"`
+	PosY      int       `json:"posY" gorm:"not null"`
+	TableroID uint      `json:"-"`
 }
