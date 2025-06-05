@@ -13,9 +13,9 @@ func main() {
 
 	db.DB.AutoMigrate(
 		models.User{},
-		models.Fromulario{},
+		models.Formulario{},
 		models.Tablero{},
-		models.Piece{},
+		models.Position{},
 	)
 
 	r := routes.SetupRouter()

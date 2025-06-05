@@ -31,5 +31,10 @@ func SetupRouter() *gin.Engine {
 	api.POST("/user", PostUserHandler)
 	api.DELETE("/user/:id", DeleteUserHandler)
 
+	// Rutas de tablero
+	api.GET("/tableros", GetTableroHandler)
+	api.GET("/tablero/:id", GetTableroHandler)
+	api.POST("/tablero", PostTableroHandler)
+
 	return r
 }
