@@ -7,7 +7,6 @@ toolchain go1.24.2
 require (
 	github.com/gin-contrib/cors v1.7.5
 	github.com/gin-gonic/gin v1.10.1
-	github.com/gorilla/mux v1.8.1
 	gorm.io/driver/postgres v1.5.11
 	gorm.io/gorm v1.26.0
 )
