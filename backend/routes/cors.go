@@ -33,6 +33,7 @@ func SetupRouter() *gin.Engine {
 
 	// Rutas de tablero
 	api.GET("/tableros", GetTableroHandler)
+	api.GET("/tablero/:id", GetTableroHandler)
 	api.POST("/tablero", PostTableroHandler)
 
 	return r
