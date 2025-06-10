@@ -2,7 +2,6 @@ import { Component, ViewChild, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TemplateEditorComponent } from '../Components/component.template_editor';
 import { PrefabComponent } from '../Prefabs/prefab.component';
-import { ButtonListComponent } from '../Components/creatorButton/component.buttonList';
 
 @Component({
   selector: 'app-form',
