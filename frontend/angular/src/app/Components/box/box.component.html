@@ -1,17 +1,9 @@
 <div 
 class="celda" [style.background-color]="(!safe && content != null) ? '#f00':(x+y) % 2 == 1 ? '#c0c0c0' : 'white'" 
 (click)="onClick()">
-@if(content == "queen"){ 
-    <img src="queen.png" alt="Queen Piece" class="piece-image" width="50" height="50">
-}@else if (content == "rook"){
-    <img src="rook.png" alt="Rook Piece" class="piece-image" width="50" height="50">
-}@else if (content == "bishop"){
-    <img src="bishop.png" alt="Bishop Piece" class="piece-image" width="50" height="50">
-}@else if (content == "knight"){
-    <img src="knight.png" alt="Knight Piece" class="piece-image" width="50" height="50">
-}@else if (status == "highlighted"){
-    <div class="dot"></div>
-}
+<div class="image" [style.background-image]="'url(/' + content +'.png)'"></div>
+   
+
 
 </div>
 

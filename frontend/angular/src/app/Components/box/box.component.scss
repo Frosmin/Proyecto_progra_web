@@ -9,7 +9,17 @@
     border: 1px solid #333;
     margin: -1px 0 0 -1px;
     font-weight: bold;
+
+    .image{
+        width: 90%;
+        height: 90%;
+        background-size: contain;
+        // background-image: url("/queen.png");
+    }
+
+    
 }
+
 
   
 .celda:hover {
@@ -28,4 +38,6 @@ transform: scale(0.9);
     border-radius: 50%;
     background-color: #5555;
 }
+
+
 
