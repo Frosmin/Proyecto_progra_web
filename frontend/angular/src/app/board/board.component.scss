@@ -1,0 +1,169 @@
+.editor-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .button-list {
+      display: flex;
+      flex-direction: column; /* Stack buttons vertically */
+      gap: 10px; /* Add spacing between buttons */
+      padding: 0; /* Remove padding */
+      margin: 0; /* Remove margin */
+  }
+  
+  /* Style for individual buttons */
+  .button-list .creational-btn {
+      width: 100%; /* Make buttons take full width of the container */
+  }
+  
+  .template-editor-title{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .no-prefabs{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  /* Estilos para el tablero */
+  .tablero-container {
+    // margin: 20px 0;
+    padding: 15px;
+    // border: 1px solid #ddd;
+    // border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  
+  }
+  
+  .tablero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+  }
+  
+  .fila {
+    display: grid;
+    position: relative;
+    width: 100%;
+    grid-template-columns: repeat(8,1fr);
+  }
+  
+  .tablero app-box {
+    min-width: 20px;
+    min-height: 20px;
+  }
+  
+  /* Para tableros más grandes, ajustar el tamaño de las celdas */
+  @media (max-width: 768px) {
+    .tablero app-box {
+      min-width: 20px;  
+      min-height: 20px;
+    }
+  }
+  
+  
+  /* Alterna colores para crear efecto de tablero de ajedrez */
+  .fila:nth-child(odd) .celda:nth-child(even),
+  .fila:nth-child(even) .celda:nth-child(odd) {
+    background-color: #e0e0e0;
+  }
+  
+  .fila:nth-child(odd):hover .celda:nth-child(even):hover,
+  .fila:nth-child(even):hover .celda:nth-child(odd):hover {
+    background-color: #278dcd;
+    cursor: pointer; 
+  }
+  
+  /* Estilos para el formulario de entrada */
+  .input-form {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .input-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .input-form button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .input-form button:hover {
+    background-color: #45a049;
+  }
+  
+  .dropdown{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  
+    li{
+        padding: 0.1rem;
+        cursor: pointer;
+        list-style: none;
+        transition: background-color 0.3s;
+  
+        &:hover {
+            background-color: #f0f0f0;
+        }
+  
+        &:active {
+            background-color: #e0e0e0;
+            transform: scale(0.95);
+        }
+        
+    }
+  }
+  
+  
+  .creational-btn {
+      /* background-color: yellow; */
+      background-color: rgb(0, 161, 27); /*Black background */
+      color: #fff; /* White text */
+      border: none; /* Remove default border */
+      border-radius: 5px; /* Rounded corners */
+      padding: 10px 20px; /* Add padding for a better look */
+      font-size: 16px; /* Increase font size */
+      cursor: pointer; /* Change cursor to pointer on hover */
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+  }
+  
+  .creational-btn:hover {
+      background-color: #0e9472; /* Slightly lighter black on hover */
+      transform: scale(1.05); /* Slight zoom effect on hover */
+  }
+  
+  .creational-btn:active {
+      background-color: #555; /* Even lighter black when clicked */
+      transform: scale(0.95); /* Slight shrink effect when clicked */
+  }

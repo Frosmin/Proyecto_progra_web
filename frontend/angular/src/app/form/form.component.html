@@ -1,15 +1,6 @@
 <section class="form-container">
-
-    <div class="button-list">
-        <app-button-list 
-            (editorChange)="setEditorState($event)"
-            (tableroCreado)="setTableroData($event, templateEditor)">
-        </app-button-list>
-    </div>
     <div class="template-editor">
-        <app-template-editor #templateEditor
-            [editor]="editor"
-        ></app-template-editor>
+        <app-board-component/>
     </div>
 
 </section>
