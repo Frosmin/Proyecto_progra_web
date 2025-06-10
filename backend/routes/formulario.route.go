@@ -25,6 +25,18 @@ func GetFormularioByIDHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, formulario)
 }
 
+func GetFormularioFULLByIDHandler(c *gin.Context) {
+	id := c.Param("id")
+	var formulario models.Formulario
+
+	if err := db.DB.Preload("Tableros").Preload("Tableros.Positions").First(&formulario, id).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Formulario no encontrado"})
+		return
+	}
+
+	c.JSON(http.StatusOK, formulario)
+}
+
 func PostFormularioHandler(c *gin.Context) {
 	var formulario models.Formulario
 
