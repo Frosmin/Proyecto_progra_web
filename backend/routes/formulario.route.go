@@ -24,3 +24,18 @@ func GetFormularioByIDHandler(c *gin.Context) {
 
 	c.JSON(http.StatusOK, formulario)
 }
+
+func PostFormularioHandler(c *gin.Context) {
+	var formulario models.Formulario
+
+	if err := c.ShouldBindJSON(&formulario); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if res := db.DB.Create(&formulario); res.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": res.Error.Error()})
+		return
+	}
+	c.JSON(http.StatusCreated, formulario)
+}
