@@ -1,0 +1,11 @@
+<mat-form-field class="number-input">
+  <mat-label>Dimensiónes</mat-label>
+  <input
+    matInput
+    type="number"
+    [value]="size"
+    min="1"
+    max="12"
+    (input)="onSizeInputChange($any($event.target).valueAsNumber)"
+    />
+</mat-form-field>

@@ -5,7 +5,7 @@ import { boardType,boardsMockups } from '../utils/FormType';
 
 @Component({
   selector: 'app-form',
-  standalone: true,
+  // standalone: true,
   imports: [CommonModule,BoardComponent],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']

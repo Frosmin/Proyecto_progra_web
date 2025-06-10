@@ -1,4 +1,11 @@
-import { EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
+import {
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Component, Type } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -13,13 +20,14 @@ import {
 } from '../utils/BoxTypes';
 import { ChangeDetectorRef } from '@angular/core';
 import { BoardService } from '../board/board.service';
+import { InputComponent } from '../Components/input/input.component';
 
 @Component({
   selector: 'app-board-component',
-  imports: [CommonModule, FormsModule, BoxComponent],
+  standalone: true,
+  imports: [CommonModule, FormsModule, BoxComponent, InputComponent],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
-  standalone: true,
 })
 export class BoardComponent {
   _editor: boolean = true;
@@ -31,22 +39,24 @@ export class BoardComponent {
     this._editor = value;
     this.onEditorChange();
   }
-  _tableroSize : number = 4;
-  @Input() 
-  get tableroSize() : number{
-    return this._tableroSize;
-  }
-  set tableroSize(value: number){
-    this._tableroSize = value;
-    this.tablero = this.boardService.createBoard(this.tableroSize);
-  }
 
-
-  
+ 
 
   boardService = inject(BoardService);
   piecePositions: CoordinateDictionary<PiecePosition> = {};
-  tablero: BoxType[][] = this.boardService.createBoard(this.tableroSize);
+  tablero: BoxType[][] = [];
+
+  private _tableroSize: number = 1;
+  @Input()
+  set tableroSize(value: number) {
+    this._tableroSize = value;
+    this.tablero = this.boardService.createBoard(this._tableroSize);
+  }
+
+  get tableroSize(): number {
+    return this._tableroSize;
+  }
+
   tableroCreado: boolean = true;
   readonly pieces = Pieces;
   selectedPiece: PiecePosition | null = null;

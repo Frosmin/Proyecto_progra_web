@@ -44,6 +44,12 @@
     height: 100%;
   
   }
+
+  .tablero-title{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
   
   .tablero {
     position: relative;
