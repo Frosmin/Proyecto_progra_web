@@ -31,12 +31,21 @@ export class BoardComponent {
     this._editor = value;
     this.onEditorChange();
   }
+  _tableroSize : number = 4;
+  @Input() 
+  get tableroSize() : number{
+    return this._tableroSize;
+  }
+  set tableroSize(value: number){
+    this._tableroSize = value;
+    this.tablero = this.boardService.createBoard(this.tableroSize);
+  }
+
 
   
 
   boardService = inject(BoardService);
   piecePositions: CoordinateDictionary<PiecePosition> = {};
-  @Input() tableroSize: number = 8;
   tablero: BoxType[][] = this.boardService.createBoard(this.tableroSize);
   tableroCreado: boolean = true;
   readonly pieces = Pieces;
