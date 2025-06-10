@@ -42,18 +42,23 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+
 }
 
 .tablero {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 80%;
+  height: 80%;
   margin: 0 auto;
 }
 
 .fila {
-  display: flex;
+  display: grid;
+  position: relative;
+  width: 100%;
+  grid-template-columns: repeat(8,1fr);
 }
 
 .tablero app-box {
