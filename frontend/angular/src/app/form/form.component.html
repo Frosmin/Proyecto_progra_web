@@ -1,6 +1,8 @@
 <section class="form-container">
     <div class="template-editor">
-        <app-board-component/>
+        @for (board of boards; track $index) {
+            <app-board-component [tableroSize]="board.size"></app-board-component>
+        }
     </div>
 
 </section>

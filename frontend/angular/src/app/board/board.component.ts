@@ -1,7 +1,6 @@
 import { EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Component, Type } from '@angular/core';
-import { PrefabComponent } from '../Prefabs/prefab.component';
 import { FormsModule } from '@angular/forms';
 import { BoxComponent } from '../Components/box/box.component';
 import {
@@ -34,7 +33,7 @@ export class BoardComponent {
   }
   boardService = inject(BoardService);
   piecePositions: CoordinateDictionary<PiecePosition> = {};
-  tableroSize: number = 8;
+  @Input() tableroSize: number = 8;
   tablero: BoxType[][] = this.boardService.createBoard(this.tableroSize);
   tableroCreado: boolean = true;
   readonly pieces = Pieces;
