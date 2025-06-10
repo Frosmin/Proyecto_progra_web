@@ -31,6 +31,9 @@ export class BoardComponent {
     this._editor = value;
     this.onEditorChange();
   }
+
+  
+
   boardService = inject(BoardService);
   piecePositions: CoordinateDictionary<PiecePosition> = {};
   @Input() tableroSize: number = 8;
