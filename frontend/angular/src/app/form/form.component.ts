@@ -7,7 +7,7 @@ import { ButtonListComponent } from '../Components/creatorButton/component.butto
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [CommonModule,TemplateEditorComponent,ButtonListComponent],
+  imports: [CommonModule,TemplateEditorComponent], //,ButtonListComponent
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
