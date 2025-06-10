@@ -8,7 +8,7 @@
     </div>
     <div class="tablero">
       @for(fila of tablero; track $index) {
-      <div class="fila">
+      <div class="fila" [style.grid-template-columns]="'repeat('+ tableroSize +', 1fr)'">
         @for(celda of fila; track $index) {
         <app-box
           [editor]="editor"
