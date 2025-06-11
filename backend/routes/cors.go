@@ -36,5 +36,11 @@ func SetupRouter() *gin.Engine {
 	api.GET("/tablero/:id", GetTableroHandler)
 	api.POST("/tablero", PostTableroHandler)
 
+	//rutas de formulario
+	api.GET("/formularios", GetFormularioHandler)
+	api.GET("/formulario/:id", GetFormularioByIDHandler)
+	api.GET("/formulariofull/:id", GetFormularioFULLByIDHandler)
+	api.POST("/formulario", PostFormularioHandler)
+
 	return r
 }
