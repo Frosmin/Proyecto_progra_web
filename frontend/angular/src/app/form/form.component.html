@@ -1,5 +1,8 @@
 <section class="form-container">
     <div class="template-editor">
+        <div class="btn-xd">
+            <button mat-flat-button (click)="agregarTablero()">Agregar tablero</button>
+        </div>
         @for (board of boards; track $index) {
             <app-board-component [tableroSize]="board.size"></app-board-component>
         }
