@@ -16,6 +16,13 @@
         background-size: contain;
         // background-image: url("/queen.png");
     }
+    .dot{
+        position: relative;
+        width: 35%;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        background-color: #5555;
+    }
 
     
 }
@@ -31,13 +38,7 @@ cursor: pointer;
 transform: scale(0.9);
 }
 
-.dot{
-    position: relative;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #5555;
-}
+
 
 
 
