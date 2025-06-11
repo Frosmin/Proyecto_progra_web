@@ -1,11 +1,18 @@
 <section class="form-container">
-    <div class="template-editor">
-        <div class="btn-xd">
-            <button mat-flat-button (click)="agregarTablero()">Agregar tablero</button>
-        </div>
-        @for (board of boards; track $index) {
-            <app-board-component [tableroSize]="board.size"></app-board-component>
-        }
+  <div class="template-editor">
+    <div class="area">
+        <mat-form-field class="description">
+          <mat-label>Instrucciones del problema</mat-label>
+          <textarea matInput value="" rows="5"></textarea>
+        </mat-form-field>
     </div>
-
+    @for (board of boards; track $index) {
+    <app-board-component [tableroSize]="board.size"></app-board-component>
+    }
+    <div class="btn-xd">
+      <button mat-flat-button (click)="agregarTablero()">
+        Agregar tablero
+      </button>
+    </div>
+  </div>
 </section>

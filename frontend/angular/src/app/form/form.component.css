@@ -10,6 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .template-editor {
@@ -20,8 +21,16 @@
     /* overflow-y: auto; Allow scrolling if content overflows */
     background-color: #f9f9f9; /* Light background for better contrast */
 }
-
-
+.area{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+.description{
+    width: 70%;
+}
 
 @media (max-width: 900px){
     .form-container{
