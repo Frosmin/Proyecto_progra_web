@@ -1,4 +1,12 @@
 <section class="form-container">
+    <div class="switch-container">
+        <p>
+            {{editor ? "Modo Editor" : "Modo Visualizador"}}
+        </p>
+        <div [className]="editor ? 'switch' : 'switch active'" (click)="toggleEditor()">
+            <div class="circle"></div>
+        </div>
+    </div>
   <div class="template-editor">
     <div class="area">
         <mat-form-field class="description">
@@ -7,7 +15,7 @@
         </mat-form-field>
     </div>
     @for (board of boards; track $index) {
-    <app-board-component [tableroSize]="board.size"></app-board-component>
+    <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
     }
     <div class="btn-xd">
       <button mat-flat-button (click)="agregarTablero()">
