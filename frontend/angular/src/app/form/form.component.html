@@ -13,12 +13,16 @@
         </div>
     </div>
     
-    <div class="template-editor">
-        
-        @for (board of boards; track $index) {
-            <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
-        }
+   
+  <div class="template-editor">
+    <div class="area">
+        <mat-form-field class="description">
+          <mat-label>Instrucciones del problema</mat-label>
+          <textarea matInput value="" rows="2" ></textarea>
+        </mat-form-field>
     </div>
-    
-
+    @for (board of boards; track $index) {
+    <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
+    }
+  </div>
 </section>
