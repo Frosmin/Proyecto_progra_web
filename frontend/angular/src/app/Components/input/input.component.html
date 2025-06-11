@@ -1,10 +1,10 @@
 <mat-form-field class="number-input">
-  <mat-label>Dimensiónes</mat-label>
+  <mat-label>Dimensiones</mat-label>
   <input
     matInput
     type="number"
     [value]="size"
-    min="1"
+    min="4"
     max="12"
     (input)="onSizeInputChange($any($event.target).valueAsNumber)"
     />
