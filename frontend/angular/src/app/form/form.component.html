@@ -8,6 +8,9 @@
         </div>
     </div>
     <div class="template-editor">
+        <div class="btn-xd">
+            <button mat-flat-button (click)="agregarTablero()">Agregar tablero</button>
+        </div>
         @for (board of boards; track $index) {
             <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
         }
