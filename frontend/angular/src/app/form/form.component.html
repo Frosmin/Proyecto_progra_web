@@ -1,16 +1,20 @@
 <section class="form-container">
-    <div class="switch-container">
-        <p>
-            {{editor ? "Modo Editor" : "Modo Visualizador"}}
-        </p>
-        <div [className]="editor ? 'switch' : 'switch active'" (click)="toggleEditor()">
-            <div class="circle"></div>
+    <div class="left">
+        <div class="switch-container">
+            <p>
+                {{editor ? "Modo Editor" : "Modo Visualizador"}}
+            </p>
+            <div [className]="editor ? 'switch' : 'switch active'" (click)="toggleEditor()">
+                <div class="circle"></div>
+            </div>
         </div>
-    </div>
-    <div class="template-editor">
         <div class="btn-xd">
             <button mat-flat-button (click)="agregarTablero()">Agregar tablero</button>
         </div>
+    </div>
+    
+    <div class="template-editor">
+        
         @for (board of boards; track $index) {
             <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
         }
