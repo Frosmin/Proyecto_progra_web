@@ -8,12 +8,16 @@ import { boardType,boardsMockups } from '../utils/FormType';
   // standalone: true,
   imports: [CommonModule,BoardComponent],
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.scss']
 })
 export class FormComponent {
 
   boards : boardType[] = boardsMockups
 
   editor: boolean = true; // Para determinar si se está en modo edición o no
+
+  toggleEditor() : void{
+    this.editor = !this.editor;
+  }
 
 }

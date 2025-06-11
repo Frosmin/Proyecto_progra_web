@@ -1,6 +1,17 @@
+$green : #04AA6D;
+
 .container{
   display: grid;
   grid-template-rows: 1fr 5fr 1fr;
   grid-template-columns: 1fr;
   height: 100vh;
+}
+
+
+.btn{
+  padding : 2px 4px;
+}
+
+.btn-green{
+  background-color: $green;
 }

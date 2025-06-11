@@ -1,5 +1,7 @@
 @use '@angular/material' as mat;
 
+
+
 html {
   @include mat.theme((
     color: (
@@ -23,6 +25,7 @@ body {
     container-text-color: white,
   ));
 }
+
 
 /* You can add global styles to this file, and also import other style files */
 /* Estilos globales y mobile-first */
