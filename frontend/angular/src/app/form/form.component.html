@@ -29,5 +29,9 @@
     @for (board of boards; track $index) {
     <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
     }
+
+    <div class="btn-container">
+        <button class="save-btn">Guardar tablero</button>
+    </div>
   </div>
 </section>
