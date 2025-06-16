@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
-  // standalone: true,
+  standalone: true,
   imports: [
     CommonModule,
     BoardComponent,
@@ -26,24 +26,30 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent {
-  boards: boardType[] = [];
-  cnt: number = 1;
+  // boards: boardType[] = [];
+  // cnt: number = 1;
   editor: boolean = true; // Para determinar si se está en modo edición o no
+
+    boards: boardType[] = [{
+    id: 'singleBoard', // ID único para el tablero
+    size: 8, // Tamaño por defecto del tablero
+    pieces: [], // Piezas iniciales, si las hubiera
+  }];
 
   toggleEditor() : void{
     this.editor = !this.editor;
   }
 
-  agregarTablero() {
-    const nuevoTablero: boardType = {
-      id: this.cnt.toString(),
-      size: 4,
-      pieces: [],
-    };
-    this.boards.push(nuevoTablero);
-    this.cnt++;
-  }
-  eliminarTablero(index: number) {
-    this.boards.splice(index, 1);
-  }
+  // agregarTablero() {
+  //   const nuevoTablero: boardType = {
+  //     id: this.cnt.toString(),
+  //     size: 4,
+  //     pieces: [],
+  //   };
+  //   this.boards.push(nuevoTablero);
+  //   this.cnt++;
+  // }
+  // eliminarTablero(index: number) {
+  //   this.boards.splice(index, 1);
+  // }
 }
