@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, Type } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BoxComponent } from '../Components/box/box.component';
 import {
@@ -18,27 +18,111 @@ import {
   PiecePosition,
   Pieces,
 } from '../utils/BoxTypes';
-import { ChangeDetectorRef } from '@angular/core';
 import { BoardService } from '../board/board.service';
 import { InputComponent } from '../Components/input/input.component';
+import { TableroService } from '../services/form.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-board-component',
   standalone: true,
-  imports: [CommonModule, FormsModule, BoxComponent, InputComponent],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    BoxComponent, 
+    InputComponent,
+    MatSnackBarModule
+  ],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
+
+
 export class BoardComponent {
   _editor: boolean = true;
-  @Input()
-  get editor(): boolean {
-    return this._editor;
-  }
+  @Input() title: string = '';
+  @Input() description: string = '';
+  @Input() formularioId: number = 1;
+
+  constructor(private tableroService: TableroService, private snackBar: MatSnackBar) {}
+  
+
+  @Input() 
   set editor(value: boolean) {
     this._editor = value;
     this.onEditorChange();
   }
+  get editor(): boolean {
+    return this._editor;
+  }
+
+
+
+
+
+  saveTablero() {
+  // Verificar si hay piezas en el tablero
+  if (Object.keys(this.piecePositions).length === 0) {
+    this.snackBar.open('Por favor, coloca al menos una pieza en el tablero', 'Cerrar', {
+      duration: 3000
+    });
+    return;
+  }
+
+  // Verificar si hay un título
+  if (!this.title.trim()) {
+    this.snackBar.open('Por favor, añade un título al tablero', 'Cerrar', {
+      duration: 3000
+    });
+    return;
+  }
+
+  // Crear array de posiciones
+  const positions: any[] = [];
+  
+  // Convertir el diccionario de piezas a un array como lo espera el backend
+  Object.keys(this.piecePositions).forEach(key => {
+    const pos = this.piecePositions[key as keyof typeof this.piecePositions];
+    if (pos) {
+      positions.push({
+        Type: pos.piece,
+        PosX: pos.x,
+        PosY: pos.y
+      });
+    }
+  });
+
+  console.log('Posiciones procesadas:', positions);
+
+  // Crear el objeto tablero según el modelo del backend
+  const tableroToSave = {
+    Title: this.title,
+    Description: this.description || 'Sin descripción',
+    Size: this.tableroSize,
+    FormularioID: this.formularioId,
+    Positions: positions
+  };
+
+  console.log('Enviando tablero:', tableroToSave);
+
+  // Enviar los datos al backend
+  this.tableroService.saveTablero(tableroToSave).subscribe({
+    next: (response) => {
+      this.snackBar.open('Tablero guardado con éxito!', 'Cerrar', {
+        duration: 3000
+      });
+      console.log('Tablero guardado:', response);
+    },
+    error: (error) => {
+      this.snackBar.open('Error al guardar el tablero: ' + (error.message || 'Error desconocido'), 'Cerrar', {
+        duration: 5000
+      });
+      console.error('Error al guardar el tablero:', error);
+    }
+  });
+}
+  
+
 
  
 

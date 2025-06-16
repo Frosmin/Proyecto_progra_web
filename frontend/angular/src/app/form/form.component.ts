@@ -1,7 +1,7 @@
-import { Component, ViewChild, Type } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardComponent } from '../board/board.component';
-import { boardType, boardsMockups } from '../utils/FormType';
+import { boardType } from '../utils/FormType';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,10 +11,10 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
-  // standalone: true,
+  standalone: true,
   imports: [
     CommonModule,
-    BoardComponent,
+    BoardComponent, 
     MatIconModule,
     MatDividerModule,
     MatButtonModule,
@@ -32,6 +32,9 @@ export class FormComponent {
     size: 4,
     pieces: [],
   };
+
+  title: string = '';
+  description: string = '';
 
   cnt: number = 1;
   editor: boolean = true; // Para determinar si se está en modo edición o no

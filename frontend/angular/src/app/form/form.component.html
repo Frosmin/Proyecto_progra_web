@@ -16,20 +16,26 @@
    
   <div class="template-editor">
     <div class="area">
-        <mat-form-field class="description">
-          <mat-label>titulo del problema</mat-label>
-          <textarea matInput value="" rows="2" ></textarea>
+        <mat-form-field appearance="fill">
+        <mat-label>Título del tablero</mat-label>
+        <input matInput [(ngModel)]="title" required>
         </mat-form-field>
 
-        <mat-form-field class="description">
-          <mat-label>Instrucciones del problema</mat-label>
-          <textarea matInput value="" rows="2" ></textarea>
+        <mat-form-field appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput [(ngModel)]="description"></textarea>
         </mat-form-field>
     </div>
     <!-- @for (board of boards; track $index) {
     <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
     } -->
 
-    <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
+    <app-board-component 
+    [tableroSize]="board.size" 
+    [editor]="editor"
+    [title]="title"
+    [description]="description"
+    [formularioId]="1">
+    </app-board-component>
   </div>
 </section>
