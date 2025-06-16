@@ -29,6 +29,7 @@ export class FormComponent {
   // boards: boardType[] = [];
   // cnt: number = 1;
   editor: boolean = true; // Para determinar si se está en modo edición o no
+  @ViewChild(BoardComponent) boardComponentInstance!: BoardComponent;
 
     boards: boardType[] = [{
     id: 'singleBoard', // ID único para el tablero
@@ -36,9 +37,66 @@ export class FormComponent {
     pieces: [], // Piezas iniciales, si las hubiera
   }];
 
+
+  boardTitle: string = ''; 
+  boardDescription: string = ''; 
+
   toggleEditor() : void{
     this.editor = !this.editor;
   }
+
+
+  consola(): void {
+      if (this.boardComponentInstance) {
+        // Accede directamente a las propiedades públicas de BoardComponent
+        const tableroActual = this.boardComponentInstance.tablero;
+        const posicionesPiezasActuales = this.boardComponentInstance.piecePositions;
+        const tamanoTableroActual = this.boardComponentInstance.tableroSize;
+
+        console.log("Datos del BoardComponent obtenidos desde FormComponent:");
+        console.log("Título:", this.boardTitle);
+        console.log("Descripción:", this.boardDescription);
+        console.log("Tamaño del tablero:", tamanoTableroActual);
+        console.log("Estructura del tablero (cuadrícula):", tableroActual);
+        console.log("Posiciones de las piezas:", posicionesPiezasActuales);
+
+        // Aquí podrías llamar a una función para enviar estos datos al backend
+        // this.enviarDatosAlBackend(this.boardTitle, this.boardDescription, tamanoTableroActual, posicionesPiezasActuales);
+      } else {
+        console.error("BoardComponent no está disponible todavía.");
+      }
+  }
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // agregarTablero() {
   //   const nuevoTablero: boardType = {

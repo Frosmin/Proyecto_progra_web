@@ -18,12 +18,14 @@
     <div class="area">
         <mat-form-field class="description">
           <mat-label>Titulo</mat-label>
-          <textarea matInput value="" rows="2" ></textarea>
+          <!-- Vincula con ngModel a la propiedad boardTitle -->
+          <textarea matInput [(ngModel)]="boardTitle" name="boardTitle" rows="2" ></textarea>
         </mat-form-field>
 
         <mat-form-field class="description">
           <mat-label>Instrucciones del problema</mat-label>
-          <textarea matInput value="" rows="2" ></textarea>
+          <!-- Vincula con ngModel a la propiedad boardDescription -->
+          <textarea matInput [(ngModel)]="boardDescription" name="boardDescription" rows="2" ></textarea>
         </mat-form-field>
     </div>
     @for (board of boards; track $index) {
@@ -31,7 +33,7 @@
     }
 
     <div class="btn-container">
-        <button class="save-btn">Guardar tablero</button>
+        <button (click)="consola()" class="save-btn">Guardar tablero</button>
     </div>
   </div>
 </section>
