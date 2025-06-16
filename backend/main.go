@@ -2,6 +2,7 @@ package main
 
 import (
 	"backend/db"
+	"backend/models"
 	"backend/routes"
 	"log"
 )
@@ -10,12 +11,11 @@ func main() {
 
 	db.Connect()
 
-	// db.DB.AutoMigrate(
-	// 	models.User{},
-	// 	models.Formulario{},
-	// 	models.Tablero{},
-	// 	models.Position{},
-	// )
+	db.DB.AutoMigrate(
+		models.User{},
+		models.Tablero{},
+		models.Position{},
+	)
 
 	r := routes.SetupRouter()
 
