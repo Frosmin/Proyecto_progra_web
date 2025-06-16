@@ -27,6 +27,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class FormComponent {
   boards: boardType[] = [];
+  board: boardType = {
+    id: "1",
+    size: 4,
+    pieces: [],
+  };
+
   cnt: number = 1;
   editor: boolean = true; // Para determinar si se está en modo edición o no
 

@@ -11,7 +11,9 @@ type Position struct {
 }
 type Tablero struct {
 	gorm.Model
+	Title        string     `gorm:"unique;not null"`
 	Description  string     `gorm:"unique;not null"`
 	Positions    []Position `gorm:"foreignKey:TableroID"`
+	Size         int        `gorm:"not null"`
 	FormularioID uint       `gorm:"column:formularioId;type:bigint;not null"`
 }

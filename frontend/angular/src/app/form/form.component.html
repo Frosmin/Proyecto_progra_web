@@ -8,21 +8,28 @@
                 <div class="circle"></div>
             </div>
         </div>
-        <div class="btn-xd">
+        <!-- <div class="btn-xd">
             <button mat-flat-button (click)="agregarTablero()">Agregar tablero</button>
-        </div>
+        </div> -->
     </div>
     
    
   <div class="template-editor">
     <div class="area">
         <mat-form-field class="description">
+          <mat-label>titulo del problema</mat-label>
+          <textarea matInput value="" rows="2" ></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="description">
           <mat-label>Instrucciones del problema</mat-label>
           <textarea matInput value="" rows="2" ></textarea>
         </mat-form-field>
     </div>
-    @for (board of boards; track $index) {
+    <!-- @for (board of boards; track $index) {
     <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
-    }
+    } -->
+
+    <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
   </div>
 </section>

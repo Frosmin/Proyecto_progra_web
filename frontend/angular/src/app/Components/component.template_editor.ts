@@ -14,6 +14,7 @@ import {
 import { ChangeDetectorRef } from '@angular/core';
 import { BoardService } from '../board/board.service';
 
+
 @Component({
   selector: 'app-template-editor',
   imports: [CommonModule, FormsModule, BoxComponent],
