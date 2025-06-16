@@ -72,6 +72,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     textarea{
         font-size: 0.9rem;
@@ -89,3 +90,25 @@
         flex-direction: column;
     }
 }
+
+  .save-btn {
+      /* background-color: yellow; */
+      background-color: rgb(13, 219, 47); /*Black background */
+      color: #fff; /* White text */
+      border: none; /* Remove default border */
+      border-radius: 5px; /* Rounded corners */
+      padding: 10px 20px; /* Add padding for a better look */
+      font-size: 16px; /* Increase font size */
+      cursor: pointer; /* Change cursor to pointer on hover */
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+  }
+  
+  .save-btn:hover {
+      background-color: #0e9472; /* Slightly lighter black on hover */
+      transform: scale(1.05); /* Slight zoom effect on hover */
+  }
+
+  .save-btn:active {
+      background-color: #555; /* Even lighter black when clicked */
+      transform: scale(0.95); /* Slight shrink effect when clicked */
+  }

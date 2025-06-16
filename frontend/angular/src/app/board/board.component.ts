@@ -127,4 +127,10 @@ export class BoardComponent {
     this.dropdownProps.show = false;
     this.selectedPiece = null;
   }
+
+
+  console(): void {
+    console.log(this.tablero);
+    console.log(this.piecePositions);
+  }
 }
