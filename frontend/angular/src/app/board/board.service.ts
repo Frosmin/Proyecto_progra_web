@@ -172,7 +172,7 @@ export class BoardService {
     for (let x = 0; x < board.length; x++) {
       for (let y = 0; y < board[x].length; y++) {
         const box: BoxType = board[x][y];
-        if (box.status === BoxStatus.HIGHLIGHTED) {
+        if (box.status !=  BoxStatus.EMPTY) {
           box.status = BoxStatus.EMPTY;
         }
         box.safe = true; // Reset safe status
@@ -237,8 +237,20 @@ export class BoardService {
           if (box.x >= 0 && box.x < board.length && box.y >= 0 && box.y < board[0].length) {
             const unsafeBox: BoxType = board[box.x][box.y];
             unsafeBox.safe = false;
+            console.log(`Marking box at (${box.x}, ${box.y}) as unsafe`);
           }
         });
+
+        // Check if any piece is in an unsafe box
+        for (const [key, value] of Object.entries(piecePositions)) {
+          if (value && !board[value.x][value.y].safe) {
+            // If a piece is in an unsafe box.
+            board[value.x][value.y].status = BoxStatus.SELECTED; // Reset status if safe
+
+          } else if (value) {
+            board[value.x][value.y].status = BoxStatus.CHECKED; // Reset status if safe
+          }
+        }
       }
   }
 

@@ -1,5 +1,5 @@
 <div 
-class="celda" [style.background-color]="(!safe && content != null) ? '#f00':(x+y) % 2 == 1 ? '#c0c0c0' : 'white'" 
+class="celda" [className]="status == 'checked' ? 'checked' : 'celda'" [style.background-color]="(!safe && content != null) ? '#f00':(x+y) % 2 == 1 ? '#c0c0c0' : 'white'" 
 (click)="onClick()">
 @if(content != null){
     <div class="image" [style.background-image]="'url(/' + content +'.png)'"></div>

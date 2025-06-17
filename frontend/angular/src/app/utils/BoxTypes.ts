@@ -11,6 +11,7 @@ export enum BoxStatus{
     EMPTY = 'empty',
     SELECTED = 'selected',
     HIGHLIGHTED = 'highlighted',
+    CHECKED = 'checked',
 }
 
 export type BoxType = {

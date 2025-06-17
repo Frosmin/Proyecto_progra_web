@@ -22,9 +22,32 @@
         aspect-ratio: 1/1;
         border-radius: 50%;
         background-color: #5555;
+    }  
+}
+.checked {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333;
+    margin: -1px 0 0 -1px;
+    font-weight: bold;
+    background-color: #0fc047 !important;
+    .image{
+        width: 90%;
+        height: 90%;
+        background-size: contain;
+        // background-image: url("/queen.png");
     }
-
-    
+    .dot{
+        position: relative;
+        width: 35%;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        background-color: #5555;
+    }
 }
 
 
