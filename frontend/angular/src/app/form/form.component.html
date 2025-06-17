@@ -16,17 +16,23 @@
    
   <div class="template-editor">
     <div class="area">
+      @if (editor) {
         <mat-form-field class="description">
           <mat-label>Titulo</mat-label>
           <!-- Vincula con ngModel a la propiedad boardTitle -->
-          <textarea matInput [(ngModel)]="boardTitle" name="boardTitle" rows="2" ></textarea>
+            <textarea matInput [(ngModel)]="boardTitle" name="boardTitle" rows="2" ></textarea>
         </mat-form-field>
-
         <mat-form-field class="description">
           <mat-label>Instrucciones del problema</mat-label>
           <!-- Vincula con ngModel a la propiedad boardDescription -->
           <textarea matInput [(ngModel)]="boardDescription" name="boardDescription" rows="2" ></textarea>
         </mat-form-field>
+      }@else{
+        <h2>{{boardTitle}}</h2>
+        <h3>{{boardDescription}}</h3>
+      }
+      
+        
     </div>
     @for (board of boards; track $index) {
     <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
