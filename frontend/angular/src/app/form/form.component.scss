@@ -84,6 +84,25 @@
     width: 70%;
 }
 
+.board-header{
+    // min-width: 40%;
+    margin-bottom: 1rem;
+    h2{
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+        font-family: serif;
+        margin-bottom: 0.5rem;
+    }
+    h3{
+        font-size: 1.2rem;
+        font-family: sans-serif;
+        color: #858585;
+        font-weight: bold;
+        margin: 0;
+    }
+}
+
 
 @media (max-width: 900px){
     .form-container{
