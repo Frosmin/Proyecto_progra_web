@@ -1,0 +1,19 @@
+<section class="form-container">
+
+  <div class="template-editor">
+    <div class="area">
+      <div class="board-header">
+        <h2>{{ boardTitle ? boardTitle : "Titulo del Problema" }}</h2>
+        <h3>
+          {{ boardDescription ? boardDescription : "Descripcion del problema" }}
+        </h3>
+      </div>
+    </div>
+    @for (board of boards; track $index) {
+    <app-board-component
+      [tableroSize]="board.size"
+      [editor]="editor"
+    ></app-board-component>
+    }
+  </div>
+</section>
