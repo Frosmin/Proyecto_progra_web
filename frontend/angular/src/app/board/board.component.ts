@@ -37,6 +37,7 @@ export class BoardComponent {
   }
   set editor(value: boolean) {
     this._editor = value;
+    
     this.onEditorChange();
   }
 
@@ -44,6 +45,7 @@ export class BoardComponent {
 
   boardService = inject(BoardService);
   piecePositions: CoordinateDictionary<PiecePosition> = {};
+  originalPiecePositions: CoordinateDictionary<PiecePosition> = {};
   tablero: BoxType[][] = [];
 
   private _tableroSize: number = 1;
@@ -69,6 +71,12 @@ export class BoardComponent {
 
   onEditorChange(): void {
     this.boardService.unhighlightBoard(this.tablero);
+    if (this.editor) {
+      this.piecePositions = { ...this.originalPiecePositions };
+    } else {
+      this.originalPiecePositions = { ...this.piecePositions };
+    }
+    this.boardService.resetPositions(this.tablero, this.originalPiecePositions);
   }
 
   handleBoxClick(event: BoxEvent) {

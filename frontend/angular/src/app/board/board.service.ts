@@ -267,6 +267,17 @@ export class BoardService {
     }
   }
 
+  resetPositions(board:BoxType[][] ,piecePositions: CoordinateDictionary<PiecePosition>): void {
+    this.cleanBoard(board);
+    for (const [key, value] of Object.entries(piecePositions)) {
+      if (value) {
+        const box: BoxType = board[value.x][value.y];
+        box.content = value.piece;
+        box.status = BoxStatus.EMPTY;
+      }
+    }    
+  }
+
   
 
 }
