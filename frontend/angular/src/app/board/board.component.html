@@ -4,7 +4,9 @@
   <div class="tablero-container">
     <div class="tablero-title">
       <h3>Tablero {{ tableroSize }}×{{ tableroSize }}</h3>
-      <app-input [(size)]="tableroSize"></app-input>
+      @if(_editor){
+        <app-input [(size)]="tableroSize"></app-input>
+      }
     </div>
     <div class="tablero">
       @for(fila of tablero; track $index) {

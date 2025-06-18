@@ -37,11 +37,9 @@ export class BoardComponent {
   }
   set editor(value: boolean) {
     this._editor = value;
-    
+
     this.onEditorChange();
   }
-
- 
 
   boardService = inject(BoardService);
   piecePositions: CoordinateDictionary<PiecePosition> = {};
@@ -135,7 +133,6 @@ export class BoardComponent {
     this.dropdownProps.show = false;
     this.selectedPiece = null;
   }
-
 
   console(): void {
     console.log(this.tablero);
