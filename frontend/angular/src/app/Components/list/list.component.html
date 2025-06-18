@@ -1,0 +1,10 @@
+<div class="list-asd">
+
+    <mat-action-list>
+      @for (board of data; track $index) {
+      <div class="asdf">
+        <button mat-list-item [routerLink]="['/view', board.ID]">{{ board.Title }}</button>
+      </div>
+      }
+    </mat-action-list>
+</div>
