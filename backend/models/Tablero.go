@@ -15,4 +15,5 @@ type Tablero struct {
 	Description string     `gorm:"unique;not null"`
 	Positions   []Position `gorm:"foreignKey:TableroID"`
 	Size        int        `gorm:"not null"`
+	UserID      uint
 }
