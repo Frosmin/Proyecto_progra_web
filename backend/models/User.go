@@ -10,4 +10,5 @@ type User struct {
 	LastName  string `grorm:"not null"`
 	Email     string `grorm:"unique;not null"`
 	Password  string
+	Tablero   []Tablero `gorm:"foreignKey:UserID"`
 }
