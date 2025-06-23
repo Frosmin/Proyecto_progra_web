@@ -1,19 +1,17 @@
 package models
 
-import "gorm.io/gorm"
-
 type Position struct {
-	gorm.Model
-	Type      string `gorm:"not null"`
-	PosX      int    `gorm:"not null"`
-	PosY      int    `gorm:"not null"`
-	TableroID uint
+	ID        uint   `gorm:"primaryKey" json:"ID"`
+	Type      string `gorm:"not null" json:"Type"`
+	PosX      int    `gorm:"not null" json:"PosX"`
+	PosY      int    `gorm:"not null" json:"PosY"`
+	TableroID uint   `json:"TableroID"`
 }
 type Tablero struct {
-	gorm.Model
-	Title       string     `gorm:"unique;not null"`
-	Description string     `gorm:"unique;not null"`
-	Positions   []Position `gorm:"foreignKey:TableroID"`
-	Size        int        `gorm:"not null"`
-	UserID      uint
+	ID          uint       `gorm:"primaryKey" json:"ID"`
+	Title       string     `gorm:"unique;not null" json:"Title"`
+	Description string     `gorm:"unique;not null" json:"Description"`
+	Positions   []Position `gorm:"foreignKey:TableroID" json:"Positions"`
+	Size        int        `gorm:"not null" json:"Size"`
+	UserID      uint       `json:"UserID"`
 }
