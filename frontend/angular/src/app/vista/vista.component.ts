@@ -3,6 +3,8 @@ import { boardType } from '../utils/FormType';
 import { BoardComponent } from '../board/board.component';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute } from '@angular/router';
+import { CoordinateDictionary, PiecePosition, PieceType } from '../utils/BoxTypes';
+import { Position, Tablero } from '../utils/TableroTypes';
 
 @Component({
   selector: 'app-vista',
@@ -22,6 +24,7 @@ export class VistaComponent implements OnInit {
 
   boardTitle: string = '';
   boardDescription: string = '';
+  initialPositions: CoordinateDictionary<PiecePosition> = {};
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -32,11 +35,27 @@ export class VistaComponent implements OnInit {
         this.boardTitle = data.Title;
         this.boardDescription = data.Description;
         this.boards[0].size = data.Size;
+        if (data.Positions) {
+          this.initialPositions = this.transformPositions(data.Positions);
+        }
         console.log('Mensaje recibido:', data);
       },
       error: (err) => {
         console.error('Error al llamar al API:', err);
       },
     });
+  }
+
+
+  private transformPositions(positions: Position[]): CoordinateDictionary<PiecePosition> {
+    const piecePositions: CoordinateDictionary<PiecePosition> = {};
+    positions.forEach(pos => {
+      piecePositions[`${pos.PosX}-${pos.PosY}`] = {
+        piece: pos.Type as PieceType,
+        x: pos.PosX,
+        y: pos.PosY
+      };
+    });
+    return piecePositions;
   }
 }

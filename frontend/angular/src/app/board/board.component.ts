@@ -29,7 +29,7 @@ import { InputComponent } from '../Components/input/input.component';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
-export class BoardComponent {
+export class BoardComponent implements OnChanges {
   _editor: boolean = true;
   @Input()
   get editor(): boolean {
@@ -42,6 +42,7 @@ export class BoardComponent {
   }
 
   boardService = inject(BoardService);
+  @Input() initialPositions: CoordinateDictionary<PiecePosition> = {};
   piecePositions: CoordinateDictionary<PiecePosition> = {};
   originalPiecePositions: CoordinateDictionary<PiecePosition> = {};
   tablero: BoxType[][] = [];
@@ -51,6 +52,9 @@ export class BoardComponent {
   set tableroSize(value: number) {
     this._tableroSize = value;
     this.tablero = this.boardService.createBoard(this._tableroSize);
+    if (this.piecePositions) {
+      this.boardService.resetPositions(this.tablero, this.piecePositions);
+    }
   }
 
   get tableroSize(): number {
@@ -66,6 +70,16 @@ export class BoardComponent {
     x: 0,
     y: 0,
   };
+
+    ngOnChanges(changes: SimpleChanges) {
+    if (changes['initialPositions'] && changes['initialPositions'].currentValue) {
+      this.piecePositions = { ...changes['initialPositions'].currentValue };
+      this.originalPiecePositions = { ...changes['initialPositions'].currentValue };
+      if (this.tablero && this.tablero.length > 0) {
+        this.boardService.resetPositions(this.tablero, this.piecePositions);
+      }
+    }
+  }
 
   onEditorChange(): void {
     this.boardService.unhighlightBoard(this.tablero);

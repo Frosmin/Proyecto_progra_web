@@ -137,7 +137,7 @@ private pieceTypeToString(pieceType: PieceType): string {
           return null;
         }
         return {
-          Type: this.pieceTypeToString(p.piece), 
+          Type: p.piece,
           PosX: p.x,
           PosY: p.y,
         };

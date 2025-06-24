@@ -35,6 +35,10 @@ func PostTableroHandler(c *gin.Context) {
 		return
 	}
 
+	if tablero.UserID == 0 {
+		tablero.UserID = 1 //borrar despues
+	}
+
 	// Guardar el tablero con sus posiciones
 	if result := db.DB.Create(&tablero); result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})

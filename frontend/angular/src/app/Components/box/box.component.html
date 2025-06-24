@@ -2,11 +2,9 @@
 class="celda" [className]="status == 'checked' ? 'checked' : 'celda'" [style.background-color]="(!safe && content != null) ? '#f00':(x+y) % 2 == 1 ? '#c0c0c0' : 'white'" 
 (click)="onClick()">
 @if(content != null){
-    <div class="image" [style.background-image]="'url(/' + content +'.png)'"></div>
+    <div class="image" [style.background-image]="'url(' + content +'.png)'"></div>
 }@else if (status == "highlighted"){
     <div class="dot"></div>
 }
-
-
 </div>
 
