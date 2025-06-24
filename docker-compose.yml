@@ -1,51 +1,51 @@
-services:
-  # backend:
-  #   build:
-  #     context: ./backend
-  #   ports:
-  #     - "8081:8081"
-  #   environment:
-  #     - ENV=production
-  #     - DB_HOST=postgres
-  #     - DB_PORT=5432
-  #     - DB_USER=postgres
-  #     - DB_PASSWORD=secret
-  #     - DB_NAME=postgres
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - app-network
-  #   restart: unless-stopped
+# services:
+#   backend:
+#     build:
+#       context: ./backend
+#     ports:
+#       - "8081:8081"
+#     environment:
+#       - ENV=production
+#       - DB_HOST=postgres
+#       - DB_PORT=5432
+#       - DB_USER=postgres
+#       - DB_PASSWORD=secret
+#       - DB_NAME=postgres
+#     depends_on:
+#       - postgres
+#     networks:
+#       - app-network
+#     restart: unless-stopped
 
-  frontend:
-    build:
-      context: ./frontend/angular
-    ports:
-      - "80:80"
-    # depends_on:
-    #   - backend
-    networks:
-      - app-network
-    restart: unless-stopped
+#   frontend:
+#     build:
+#       context: ./frontend/angular
+#     ports:
+#       - "80:80"
+#     # depends_on:
+#     #   - backend
+#     networks:
+#       - app-network
+#     restart: unless-stopped
 
-  postgres:
-    image: postgres:16
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: secret
-      POSTGRES_DB: mydb
-    ports:
-      - "5433:5433"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - app-network
+#   postgres:
+#     image: postgres:16
+#     restart: unless-stopped
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: secret
+#       POSTGRES_DB: mydb
+#     ports:
+#       - "5433:5433"
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#     networks:
+#       - app-network
 
-networks:
-  app-network:
-    driver: bridge
+# networks:
+#   app-network:
+#     driver: bridge
 
-volumes:
-  postgres_data:
+# volumes:
+#   postgres_data:
 

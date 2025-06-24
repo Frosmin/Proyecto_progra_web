@@ -35,13 +35,12 @@ export class FormComponent implements AfterViewInit {
 
 
   editor: boolean = true; // Para determinar si se está en modo edición o no
-  boards: boardType[] = [
+  boards: boardType  = 
     {
       id: 'singleBoard', 
       size: 8,
       pieces: [], 
-    },
-  ];
+    };
 
   boardTitle: string = '';
   boardDescription: string = '';

@@ -37,9 +37,9 @@
       
         
     </div>
-    @for (board of boards; track $index) {
-    <app-board-component [tableroSize]="board.size" [editor]="editor"></app-board-component>
-    }
+    <app-board-component [tableroSize]="boards.size" [editor]="editor"></app-board-component>
+
+
 
     <div class="btn-container">
         <button (click)="saveBoardData()" class="save-btn">Guardar tablero</button>
