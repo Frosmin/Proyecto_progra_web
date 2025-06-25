@@ -35,6 +35,7 @@ func SetupRouter() *gin.Engine {
 	api.GET("/tableros", GetTablerosHandler)
 	api.GET("/tablero/:id", GetTableroHandler)
 	api.POST("/tablero", PostTableroHandler)
+	api.GET("/user/:id/tableros", GetUserTablerosHandler)
 
 	//login
 	api.POST("/login", LoginHandler)
