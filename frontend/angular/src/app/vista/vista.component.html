@@ -4,9 +4,11 @@
     <div class="area">
       <div class="board-header">
         <h2>{{ boardTitle ? boardTitle : "Titulo del Problema" }}</h2>
-        <h3>
-          {{ boardDescription ? boardDescription : "Descripcion del problema" }}
-        </h3>
+        <div class="description">
+          <p>
+            {{ boardDescription ? boardDescription : "Descripcion del problema" }}
+          </p>
+        </div>
       </div>
     </div>
     @for (board of boards; track $index) {
