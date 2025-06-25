@@ -1,4 +1,5 @@
 <div class="list-container">
+  <h2>Mis Tableros</h2>
   <div *ngIf="isLoggedIn; else showLoginMessage">
     <app-list *ngIf="data.length > 0; else noBoardsMessage" [data]="data"></app-list>
     <ng-template #noBoardsMessage>
