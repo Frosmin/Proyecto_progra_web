@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PieceType, PiecePosition, CoordinateDictionary } from '../utils/BoxTypes'; 
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -45,7 +47,10 @@ export class FormComponent implements AfterViewInit {
   boardTitle: string = '';
   boardDescription: string = '';
 
-private http = inject(HttpClient);
+  private http = inject(HttpClient);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
   ngAfterViewInit() {
 
   }
@@ -111,9 +116,15 @@ private pieceTypeToString(pieceType: PieceType): string {
 
   saveBoardData(): void {
     if (!this.boardComponentInstance) {
-      console.error("BoardComponent no está disponible todavía.");
-      alert("Error: No se pudo acceder a los datos del tablero.");
-      return;
+    console.error("BoardComponent no está disponible todavía.");
+    alert("Error: No se pudo acceder a los datos del tablero.");
+    return;
+    }
+
+    if (!this.authService.isLoggedIn()) {
+    alert('Debes iniciar sesión para crear un tablero.');
+    this.router.navigate(['/login']);
+    return;
     }
 
     const posicionesPiezasActuales = this.boardComponentInstance.piecePositions;
@@ -144,11 +155,13 @@ private pieceTypeToString(pieceType: PieceType): string {
       })
       .filter(p => p !== null); 
 
+ const currentUser = this.authService.getCurrentUser();
     const payload = {
-      Title: this.boardTitle,
-      Description: this.boardDescription,
-      Size: tamanoTableroActual,
-      Positions: positionsForBackend, 
+    Title: this.boardTitle,
+    Description: this.boardDescription,
+    Size: tamanoTableroActual,
+    Positions: positionsForBackend, 
+    UserID: currentUser ? currentUser.ID : 0,
     };
 
     console.log('Enviando datos al backend (/api/tableros):', payload);

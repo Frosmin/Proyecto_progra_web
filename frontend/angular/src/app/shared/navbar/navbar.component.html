@@ -21,6 +21,18 @@
         >
           Crear tablero
         </button>
+        <button
+          *ngIf="!authService.isLoggedIn()"
+          mat-menu-item
+          routerLink="/login"
+          routerLinkActive="active-btn"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Login
+        </button>
+        <button *ngIf="authService.isLoggedIn()" mat-menu-item (click)="logout()">
+          Logout
+        </button>
       </mat-menu>
 
       <!-- <button matIconButton class="navbar-icon"> -->
@@ -44,6 +56,15 @@
         [routerLinkActiveOptions]="{ exact: true }"
         >Crear tablero</a
       >
+      <a
+        *ngIf="!authService.isLoggedIn()"
+        mat-button
+        routerLink="/login"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Login</a
+      >
+      <a *ngIf="authService.isLoggedIn()" mat-button (click)="logout()">Logout</a>
     </div>
   </div>
 </mat-toolbar>
