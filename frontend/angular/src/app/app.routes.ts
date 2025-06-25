@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { VistaComponent } from './vista/vista.component';
 import { LoginComponent } from './login/login.component';
 
+
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'viewform', component: ViewFormComponent },

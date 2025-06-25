@@ -1,4 +1,14 @@
-
 <div class="list-container">
-    <app-list [data]="data"></app-list>
+  <div *ngIf="isLoggedIn; else showLoginMessage">
+    <app-list *ngIf="data.length > 0; else noBoardsMessage" [data]="data"></app-list>
+    <ng-template #noBoardsMessage>
+      <p>
+        No has creado ningún tablero todavía.
+        <a routerLink="/crear">¡Crea uno ahora!</a>
+      </p>
+    </ng-template>
+  </div>
+  <ng-template #showLoginMessage>
+    <p>Por favor, <a routerLink="/login">inicia sesión</a> para ver tus tableros.</p>
+  </ng-template>
 </div>

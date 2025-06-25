@@ -47,3 +47,15 @@ func PostTableroHandler(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, tablero)
 }
+
+func GetUserTablerosHandler(c *gin.Context) {
+	userID := c.Param("id")
+	var tableros []models.Tablero
+
+	if err := db.DB.Where("user_id = ?", userID).Find(&tableros).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener los tableros"})
+		return
+	}
+
+	c.JSON(http.StatusOK, tableros)
+}

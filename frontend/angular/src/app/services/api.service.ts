@@ -14,4 +14,8 @@ export class ApiService {
   getTablero(id: number): Observable<Tablero> {
     return this.http.get<Tablero>(`http://localhost:8080/api/tablero/${id}`);
   }
+
+  getUserTableros(userId: number): Observable<Tablero[]> {
+    return this.http.get<Tablero[]>(`http://localhost:8080/api/user/${userId}/tableros`);
+}
 }
