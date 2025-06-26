@@ -12,4 +12,5 @@ export const routes: Routes = [
   { path: 'view/:id', component: VistaComponent },
   { path: 'crear', component: FormComponent },
   { path: 'login', component: LoginComponent },
+  // {path: 'register',}
 ];
