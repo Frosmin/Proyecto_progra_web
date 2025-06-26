@@ -23,6 +23,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
+  username = '';
+  firstName = '';
+  lastName = '';
   email = '';
   password = '';
 

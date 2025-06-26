@@ -6,6 +6,41 @@
     <mat-card-content>
       <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
         <mat-form-field class="full-width">
+          <mat-label>Usuario</mat-label>
+          <input
+            matInput
+            [(ngModel)]="username"
+            name="username"
+            type="username"
+            required
+            email
+          />
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            [(ngModel)]="firstName"
+            name="firstName"
+            type="firstName"
+            required
+          />
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+          <mat-label>Apellido</mat-label>
+          <input
+            matInput
+            [(ngModel)]="lastName"
+            name="lastName"
+            type="lastName"
+            required
+          />
+          </mat-form-field>
+
+
+        <mat-form-field class="full-width">
           <mat-label>Email</mat-label>
           <input
             matInput
@@ -16,7 +51,10 @@
             email
           />
         </mat-form-field>
-        <mat-form-field class="full-width">
+
+
+
+          <mat-form-field class="full-width">
           <mat-label>Contraseña</mat-label>
           <input
             matInput
@@ -25,16 +63,19 @@
             type="password"
             required
           />
-        </mat-form-field>
+          </mat-form-field>
+
+
         <button
           mat-raised-button
           color="primary"
           type="submit"
           [disabled]="!loginForm.form.valid"
         >
-          Ingresar
+          Registrarse
         </button>
-      </form>
+
+    </form>
     </mat-card-content>
   </mat-card>
 </div>
