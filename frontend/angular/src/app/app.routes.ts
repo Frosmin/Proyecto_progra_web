@@ -4,6 +4,7 @@ import { ViewFormComponent } from './viewForm/view.form.component';
 import { HomeComponent } from './home/home.component';
 import { VistaComponent } from './vista/vista.component';
 import { LoginComponent } from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 
 
 export const routes: Routes = [
@@ -12,5 +13,5 @@ export const routes: Routes = [
   { path: 'view/:id', component: VistaComponent },
   { path: 'crear', component: FormComponent },
   { path: 'login', component: LoginComponent },
-  // {path: 'register',}
+  {path: 'register', component: RegisterComponent}
 ];
