@@ -1,23 +1,18 @@
 <section class="form-container">
 
   <div class="template-editor">
-    <div class="area">
-      <div class="board-header">
-        <h2>{{ boardTitle ? boardTitle : "Titulo del Problema" }}</h2>
-        <div class="description">
-          <p>
-            {{ boardDescription ? boardDescription : "Descripcion del problema" }}
-          </p>
-        </div>
-      </div>
-    </div>
+    
     
     @for (board of boards; track $index) {
-    <app-board-component
-      [tableroSize]="board.size"
-      [editor]="editor"
+      <app-form
+      [tablearoSize]="board.size"
       [initialPositions]="initialPositions"
-    ></app-board-component>
+      [boardTitle]="boardTitle"
+      [boardDescription]="boardDescription"
+      [editor]="false"
+      >
+
+      </app-form>
     }
   </div>
 </section>

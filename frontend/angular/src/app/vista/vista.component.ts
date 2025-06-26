@@ -5,10 +5,11 @@ import { ApiService } from '../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { CoordinateDictionary, PiecePosition, PieceType } from '../utils/BoxTypes';
 import { Position, Tablero } from '../utils/TableroTypes';
+import { FormComponent } from "../form/form.component";
 
 @Component({
   selector: 'app-vista',
-  imports: [BoardComponent],
+  imports: [BoardComponent, FormComponent],
   templateUrl: './vista.component.html',
   styleUrl: './vista.component.scss',
 })

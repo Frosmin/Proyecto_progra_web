@@ -1,10 +1,12 @@
 import { PiecePosition } from "./BoxTypes";
+import { CoordinateDictionary } from "./BoxTypes";
 
 
 export type boardType = {
     id : string;
     size : number;
-    pieces : PiecePosition[]
+    pieces : PiecePosition[];
+    initialPositions?: CoordinateDictionary<PiecePosition>; // Opcional, para posiciones iniciales de las piezas (default: {})
 }
 
 

@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, inject } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, inject,Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardComponent } from '../board/board.component';
 import { boardType } from '../utils/FormType'; 
@@ -34,18 +34,20 @@ export class FormComponent implements AfterViewInit {
   @ViewChild(BoardComponent) boardComponentInstance!: BoardComponent;
   // boards: boardType[] = [];
   // cnt: number = 1;
+  @Input() tablearoSize: number = 8; // Tamaño del tablero, por defecto 8x8
+  @Input() initialPositions: CoordinateDictionary<PiecePosition> = {}; // Posiciones iniciales de las piezas
 
-
-  editor: boolean = true; // Para determinar si se está en modo edición o no
+  @Input() editor: boolean = true; // Para determinar si se está en modo edición o no
   boards: boardType  = 
     {
       id: 'singleBoard', 
-      size: 8,
+      size: this.tablearoSize,
       pieces: [], 
+      initialPositions: this.initialPositions, // Posiciones iniciales de las piezas
     };
 
-  boardTitle: string = '';
-  boardDescription: string = '';
+  @Input() boardTitle: string = '';
+  @Input() boardDescription: string = '';
 
   private http = inject(HttpClient);
   private authService = inject(AuthService);
