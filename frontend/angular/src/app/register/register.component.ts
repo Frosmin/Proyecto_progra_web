@@ -32,8 +32,8 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
-    if (!this.email || !this.password) {
-      alert('Email y contraseña son requeridos.');
+    if (!this.email || !this.password || !this.username || !this.firstName || !this.lastName) {
+      alert('Todos los campos son requeridos.');
       return;
     }
 
