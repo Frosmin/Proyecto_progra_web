@@ -82,30 +82,6 @@ export class FormComponent implements AfterViewInit {
     }
   }
 
-
-
-  // consola(): void {
-  //   if (this.boardComponentInstance) {
-  //     // Accede directamente a las propiedades públicas de BoardComponent
-  //     const tableroActual = this.boardComponentInstance.tablero;
-  //     const posicionesPiezasActuales =
-  //       this.boardComponentInstance.piecePositions;
-  //     const tamanoTableroActual = this.boardComponentInstance.tableroSize;
-
-  //     console.log('Datos del BoardComponent obtenidos desde FormComponent:');
-  //     console.log('Título:', this.boardTitle);
-  //     console.log('Descripción:', this.boardDescription);
-  //     console.log('Tamaño del tablero:', tamanoTableroActual);
-  //     console.log('Estructura del tablero (cuadrícula):', tableroActual);
-  //     console.log('Posiciones de las piezas:', posicionesPiezasActuales);
-
-  //     // Aquí podrías llamar a una función para enviar estos datos al backend
-  //     // this.enviarDatosAlBackend(this.boardTitle, this.boardDescription, tamanoTableroActual, posicionesPiezasActuales);
-  //   } else {
-  //     console.error('BoardComponent no está disponible todavía.');
-  //   }
-  // }
-
   private snackBar=inject(MatSnackBar);
 
   saveBoardData(): void {
@@ -182,7 +158,4 @@ export class FormComponent implements AfterViewInit {
       },
     });
   }
-
-
-
 }

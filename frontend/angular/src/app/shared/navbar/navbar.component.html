@@ -33,6 +33,15 @@
         <button *ngIf="authService.isLoggedIn()" mat-menu-item (click)="logout()">
           Logout
         </button>
+                <button
+          *ngIf="!authService.isLoggedIn()"
+          mat-menu-item
+          routerLink="/register"
+          routerLinkActive="active-btn"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Register
+        </button>
       </mat-menu>
 
       <!-- <button matIconButton class="navbar-icon"> -->
@@ -65,6 +74,15 @@
         >Login</a
       >
       <a *ngIf="authService.isLoggedIn()" mat-button (click)="logout()">Logout</a>
+
+      <a
+        *ngIf="!authService.isLoggedIn()"
+        mat-button
+        routerLink="/register"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Register</a
+      >
     </div>
   </div>
 </mat-toolbar>
