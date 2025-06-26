@@ -11,7 +11,7 @@ func SetupRouter() *gin.Engine {
 
 	// Configuración de CORS
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:4200"} // Tu aplicación Angular
+	config.AllowOrigins = []string{"*"} // Tu aplicación Angular
 	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"}
 	config.AllowHeaders = []string{"Origin", "Content-Type", "Accept", "Authorization"}
 
