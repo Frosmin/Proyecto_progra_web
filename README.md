@@ -4,7 +4,22 @@ Repositorio para el proyecto de programación web.
 
 ## Instrucciones de Despliegue
 
-### Opción 1: Usando Docker
+### Opción 1: Despliegue Completo usando Docker.
+
+Para iniciar tanto el frontend como el backend simultáneamente:
+
+```bash
+# Ejecutar docker-compose desde la raíz del proyecto
+docker-compose up -d --build
+```
+
+#### Acceso a los servicios
+- Frontend: [http://localhost:80](http://localhost:80)
+- Backend: [http://localhost:8080](http://localhost:8080)
+
+---
+
+### Opción 2: Usando Docker
 
 #### Frontend
 
@@ -36,31 +51,14 @@ docker run -p 8080:8080 --name backend-contenedor backend
 
 🌐 Acceder al backend: [http://localhost:8080](http://localhost:8080)
 
-### Opción 2: Despliegue Completo usando Docker.
-
-Para iniciar tanto el frontend como el backend simultáneamente:
-
-```bash
-# Ejecutar docker-compose desde la raíz del proyecto
-docker-compose up -d
-```
-
-#### Acceso a los servicios
-- Frontend: [http://localhost:80](http://localhost:80)
-- Backend: [http://localhost:8080](http://localhost:8080)
-
----
-
-
 
 ## Sin Docker
-Gorilla/mux sirve para las rutas
-Leer la docuemntacion [https://github.com/gorilla/mux](https://github.com/gorilla/mux)
 
+Gin sirve para las rutas
+Leer la docuemntacion [https://gin-gonic.com/en/docs/](https://gin-gonic.com/en/docs/)
 
 Air sirve para auto reload
 Leer la documentacion [https://github.com/air-verse/air](https://github.com/air-verse/air)
-
 
 Orm de go 
 Leer la documentacion [https://github.com/go-gorm/gorm](https://github.com/go-gorm/gorm)
@@ -69,24 +67,14 @@ https://gorm.io/docs/
 
 
 ## Sin docker
-### Cosa para el backend
+### Para el backend
 
 ```bash
 cd .\backend
 
-go get -u github.com/gorilla/mux
+go mod download
 
-go install github.com/air-verse/air@latest   
-
-go get -u gorm.io/gorm
-go get -u gorm.io/driver/postgres
-
-
-
-```bash
-cd .\backend
-
-air
+go run main.go
 ```
 
 
@@ -99,16 +87,11 @@ docker run --name some-postgres -e POSTGRES_USER=simon -e POSTGRES_PASSWORD=simo
 ```
 
 
-
-
-
 ## estandares de codificaion 
 - funciones go siempre en mayuscula 
-- 
-
 
 ## Tecnologías Utilizadas
 - Frontend: Angular
-- Backend: golang/air/gorilla
+- Backend: golang/air/gin
 - Contenedores: Docker
 - Orquestación: Docker Compose
