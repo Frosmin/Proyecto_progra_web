@@ -9,7 +9,7 @@ import { FormComponent } from "../form/form.component";
 
 @Component({
   selector: 'app-vista',
-  imports: [BoardComponent, FormComponent],
+  imports: [ FormComponent],
   templateUrl: './vista.component.html',
   styleUrl: './vista.component.scss',
 })
@@ -22,7 +22,7 @@ export class VistaComponent implements OnInit {
       pieces: [],
     },
   ];
-
+  boardId: number = 0; // ID del tablero, se obtiene de la URL
   boardTitle: string = '';
   boardDescription: string = '';
   initialPositions: CoordinateDictionary<PiecePosition> = {};
@@ -31,8 +31,10 @@ export class VistaComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    
     this.apiService.getTablero(id).subscribe({
       next: (data) => {
+        this.boardId = id;
         this.boardTitle = data.Title;
         this.boardDescription = data.Description;
         this.boards[0].size = data.Size;

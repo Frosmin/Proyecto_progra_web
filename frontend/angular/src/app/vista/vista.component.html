@@ -5,6 +5,7 @@
     
     @for (board of boards; track $index) {
       <app-form
+      [boardId]="boardId"
       [tablearoSize]="board.size"
       [initialPositions]="initialPositions"
       [boardTitle]="boardTitle"

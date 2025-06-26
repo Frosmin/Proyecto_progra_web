@@ -34,13 +34,14 @@ export class FormComponent implements AfterViewInit {
   @ViewChild(BoardComponent) boardComponentInstance!: BoardComponent;
   // boards: boardType[] = [];
   // cnt: number = 1;
+  @Input() boardId: number = 0;
   @Input() tablearoSize: number = 8; // Tamaño del tablero, por defecto 8x8
   @Input() initialPositions: CoordinateDictionary<PiecePosition> = {}; // Posiciones iniciales de las piezas
 
   @Input() editor: boolean = true; // Para determinar si se está en modo edición o no
   boards: boardType  = 
     {
-      id: 'singleBoard', 
+      id: '0', // ID del tablero, se obtiene de la URL
       size: this.tablearoSize,
       pieces: [], 
       initialPositions: this.initialPositions, // Posiciones iniciales de las piezas
@@ -156,9 +157,12 @@ private pieceTypeToString(pieceType: PieceType): string {
         };
       })
       .filter(p => p !== null); 
+  
+      console.log(this.boardId);
 
  const currentUser = this.authService.getCurrentUser();
     const payload = {
+    ID: this.boardId, 
     Title: this.boardTitle,
     Description: this.boardDescription,
     Size: tamanoTableroActual,
