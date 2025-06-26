@@ -160,7 +160,8 @@ private pieceTypeToString(pieceType: PieceType): string {
   
       console.log(this.boardId);
 
- const currentUser = this.authService.getCurrentUser();
+     const currentUser = this.authService.getCurrentUser();
+
     const payload = {
     ID: this.boardId, 
     Title: this.boardTitle,

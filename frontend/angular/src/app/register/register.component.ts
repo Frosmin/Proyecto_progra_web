@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -23,29 +24,40 @@ import { CommonModule } from '@angular/common';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
-  username = '';
-  firstName = '';
-  lastName = '';
-  email = '';
-  password = '';
+    username = '';
+    firstName = '';
+    lastName = '';
+    email = '';
+    password = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
-  onSubmit(): void {
-    if (!this.email || !this.password || !this.username || !this.firstName || !this.lastName) {
-      alert('Todos los campos son requeridos.');
-      return;
-    }
+    private http = inject(HttpClient);
 
-    this.authService.login(this.email, this.password).subscribe({
-      next: (response) => {
-        console.log('Inicio de sesión exitoso', response);
-        this.router.navigate(['/']);
-      },
-      error: (err) => {
-        console.error('Error en el inicio de sesión', err);
-        alert('Credenciales incorrectas. Por favor, intente de nuevo.');
-      },
-    });
+    onSubmit(): void {
+      if (!this.email || !this.password || !this.username || !this.firstName || !this.lastName) {
+        alert('Todos los campos son requeridos.');
+        return;
+      }
+
+      const payload = {
+        username: this.username,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password
+      };
+
+        const apiUrl ='http://localhost:8080/api/user'
+        this.http.post(apiUrl, payload).subscribe({
+          next: (response) => {
+            console.log('Usuario registrado exitosamente:', response);
+            alert('Usuario registrado exitosamente!');
+          },
+          error: (error) => {
+            console.error('Error al registrar el usuario:', error);
+            alert(`Error al registrar el usuario: ${error.message || 'Error desconocido'}`);
+          },
+        })
+    };
   }
-}
