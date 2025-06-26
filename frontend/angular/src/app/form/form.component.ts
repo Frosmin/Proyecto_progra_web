@@ -12,6 +12,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PieceType, PiecePosition, CoordinateDictionary } from '../utils/BoxTypes'; 
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-form',
@@ -26,6 +28,7 @@ import { Router } from '@angular/router';
     MatInputModule,
     MatFormFieldModule,
     HttpClientModule, 
+    MatSnackBarModule
   ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
@@ -65,7 +68,7 @@ export class FormComponent implements AfterViewInit {
     }
   }
 
-private pieceTypeToString(pieceType: PieceType): string {
+  private pieceTypeToString(pieceType: PieceType): string {
 
     switch (pieceType) {
       case PieceType.QUEEN: return "QUEEN";
@@ -78,6 +81,8 @@ private pieceTypeToString(pieceType: PieceType): string {
         return "UNKNOWN";
     }
   }
+
+  private snackBar=inject(MatSnackBar);
 
   saveBoardData(): void {
     if (!this.boardComponentInstance) {
@@ -122,8 +127,7 @@ private pieceTypeToString(pieceType: PieceType): string {
   
       console.log(this.boardId);
 
-     const currentUser = this.authService.getCurrentUser();
-
+  const currentUser = this.authService.getCurrentUser();
     const payload = {
     ID: this.boardId, 
     Title: this.boardTitle,
@@ -140,7 +144,13 @@ private pieceTypeToString(pieceType: PieceType): string {
     this.http.post(apiUrl, payload).subscribe({
       next: (response) => {
         console.log('Tablero guardado exitosamente:', response);
-        alert('Tablero guardado exitosamente!');
+        // alert('Tablero guardado exitosamente!');
+    this.snackBar.open('Tablero guardado exitosamente!', 'Cerrar', {
+      duration: 5000, // milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
+        this.router.navigate(['/viewform']);
       },
       error: (error) => {
         console.error('Error al guardar el tablero:', error);
@@ -148,31 +158,4 @@ private pieceTypeToString(pieceType: PieceType): string {
       },
     });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  // agregarTablero() {
-  //   const nuevoTablero: boardType = {
-  //     id: this.cnt.toString(),
-  //     size: 4,
-  //     pieces: [],
-  //   };
-  //   this.boards.push(nuevoTablero);
-  //   this.cnt++;
-  // }
-  // eliminarTablero(index: number) {
-  //   this.boards.splice(index, 1);
-  // }
 }
